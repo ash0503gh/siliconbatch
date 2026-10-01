@@ -5,8 +5,8 @@ organizer: "Y Combinator"
 tagline: "The premier startup accelerator with dedicated hardware & physical AI support and $500k standard deal."
 logo: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=120&auto=format&fit=crop&q=80"
 bannerImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&auto=format&fit=crop&q=80"
-website: "https://ycombinator.com"
-applyUrl: "https://ycombinator.com/apply"
+website: "https://www.ycombinator.com"
+applyUrl: "https://www.ycombinator.com/apply"
 closingDate: "2026-10-30T23:59:59Z"
 isRolling: false
 durationWeeks: 12

@@ -6,7 +6,7 @@ tagline: "The world's leading hard tech accelerator: hands-on engineering, suppl
 logo: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=120&auto=format&fit=crop&q=80"
 bannerImage: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&auto=format&fit=crop&q=80"
 website: "https://hax.co"
-applyUrl: "https://hax.co/apply"
+applyUrl: "https://sosv.com/apply/hax/"
 closingDate: "2026-11-05T23:59:59Z"
 isRolling: true
 durationWeeks: 24

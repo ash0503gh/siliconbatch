@@ -5,8 +5,8 @@ organizer: "Venture Kick (ETH Zurich & EPFL)"
 tagline: "Swiss engineering excellence: CHF 150k seed funding, micro-engineering cleanrooms, and world-class robotics."
 logo: "https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=120&auto=format&fit=crop&q=80"
 bannerImage: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=1200&auto=format&fit=crop&q=80"
-website: "https://venturekick.ch"
-applyUrl: "https://venturekick.ch/apply"
+website: "https://www.venturekick.ch"
+applyUrl: "https://www.venturekick.ch/apply"
 closingDate: "2026-11-30T23:59:59Z"
 isRolling: false
 durationWeeks: 36

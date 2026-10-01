@@ -5,8 +5,8 @@ organizer: "Agoranov & Station F"
 tagline: "Parisian deep tech powerhouse: zero-equity public financing, cleanroom access, and hardware engineering labs."
 logo: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=120&auto=format&fit=crop&q=80"
 bannerImage: "https://images.unsplash.com/photo-1508873696983-2df5293cb32b?w=1200&auto=format&fit=crop&q=80"
-website: "https://agoranov.com"
-applyUrl: "https://agoranov.com/candidater"
+website: "https://www.agoranov.com"
+applyUrl: "https://www.agoranov.com/candidater"
 closingDate: "2026-11-01T23:59:59Z"
 isRolling: false
 durationWeeks: 24

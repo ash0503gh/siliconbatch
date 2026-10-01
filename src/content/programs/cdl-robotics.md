@@ -6,7 +6,7 @@ tagline: "Objectives-focused mentorship for massive scalability in robotics, aut
 logo: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?w=120&auto=format&fit=crop&q=80"
 bannerImage: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&auto=format&fit=crop&q=80"
 website: "https://creativedestructionlab.com"
-applyUrl: "https://creativedestructionlab.com/apply"
+applyUrl: "https://creativedestructionlab.com/application-triage/"
 closingDate: "2026-12-01T23:59:59Z"
 isRolling: false
 durationWeeks: 36

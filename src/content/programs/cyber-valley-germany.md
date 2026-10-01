@@ -6,7 +6,7 @@ tagline: "Europe's largest AI research consortium: Max Planck robotics testbeds,
 logo: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=120&auto=format&fit=crop&q=80"
 bannerImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80"
 website: "https://cyber-valley.de"
-applyUrl: "https://cyber-valley.de/en/startups"
+applyUrl: "https://ai-incubator.is.mpg.de/apply"
 closingDate: "2026-12-15T23:59:59Z"
 isRolling: false
 durationWeeks: 20

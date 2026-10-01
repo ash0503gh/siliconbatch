@@ -6,7 +6,7 @@ tagline: "San Francisco hardware residency for roboticists and mechanical tinker
 logo: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=120&auto=format&fit=crop&q=80"
 bannerImage: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1200&auto=format&fit=crop&q=80"
 website: "https://root.vc"
-applyUrl: "https://root.vc/residency"
+applyUrl: "https://root.vc"
 closingDate: "2026-11-20T23:59:59Z"
 isRolling: true
 durationWeeks: 12

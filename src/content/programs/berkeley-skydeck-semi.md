@@ -6,7 +6,7 @@ tagline: "Silicon, custom ASICs, and hardware accelerators backed by Berkeley EE
 logo: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=120&auto=format&fit=crop&q=80"
 bannerImage: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=1200&auto=format&fit=crop&q=80"
 website: "https://skydeck.berkeley.edu"
-applyUrl: "https://skydeck.berkeley.edu/apply"
+applyUrl: "https://skydeck.berkeley.edu/apply/"
 closingDate: "2026-10-25T23:59:59Z"
 isRolling: false
 durationWeeks: 16

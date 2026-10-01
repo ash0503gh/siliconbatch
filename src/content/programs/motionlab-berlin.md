@@ -6,7 +6,7 @@ tagline: "Europe's premier hardware campus and maker hub: heavy prototyping, SMT
 logo: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=120&auto=format&fit=crop&q=80"
 bannerImage: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&auto=format&fit=crop&q=80"
 website: "https://motionlab.berlin"
-applyUrl: "https://motionlab.berlin/hardtech-accelerator"
+applyUrl: "https://motionlab.berlin/programs/hardtech-innovation-accelerator/"
 closingDate: "2026-11-10T23:59:59Z"
 isRolling: false
 durationWeeks: 16
