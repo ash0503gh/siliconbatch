@@ -26,296 +26,321 @@ const isClosed = daysLeft < 0 && !data.isRolling;
   title={`${data.name} Experience & Terms`}
   description={`${data.name} by ${data.organizer}: Deal terms, hardware prototyping facilities, and application guide.`}
 >
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    <!-- Breadcrumb -->
-    <div class="mb-7 flex items-center justify-between">
-      <a
-        href="/"
-        class="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-indigo-400 transition-colors group"
-      >
-        <span class="transform group-hover:-translate-x-1 transition-transform">←</span>
-        <span>Back to Live Radar</span>
-      </a>
+  <!-- Main Neo-Brutal Pop Wrapper -->
+  <div class="bg-[#F4EFE6] text-black min-h-screen font-sans pb-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <!-- Breadcrumb Link Back to Radar -->
+      <div class="mb-7 flex flex-wrap items-center justify-between gap-3">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-xs font-mono font-bold text-black bg-white border-2 border-black shadow-[3px_3px_0px_#000] px-4 py-2 rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all group"
+        >
+          <span class="transform group-hover:-translate-x-1 transition-transform font-black">←</span>
+          <span>Back to Live Radar</span>
+        </a>
 
-      {isClosed && (
-        <span class="text-xs font-mono px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/25 flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-          <span>Archived Cohort · Applications Closed</span>
-        </span>
-      )}
-    </div>
-
-    {isClosed && (
-      <div class="mb-6 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-200 flex items-start gap-3 text-sm font-mono">
-        <span class="text-lg">⚠️</span>
-        <div class="flex-1">
-          <strong class="font-bold text-white">Notice: Applications for this cohort closed on {new Date(data.closingDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.</strong>
-          <p class="text-xs text-rose-300 mt-1">
-            This program has been automatically excluded from the SiliconBatch live radar. This page is preserved for historical terms, hardware equipment specs, and founder reference.
-          </p>
-        </div>
-      </div>
-    )}
-
-    <!-- Header Hero Card (Frontier Foundry Glass) -->
-    <div class="foundry-card p-6 sm:p-10 mb-8 relative overflow-hidden">
-      <!-- Ambient Backlight Glow -->
-      <div class="absolute -right-24 -top-24 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative z-10">
-        <!-- Program Identity -->
-        <div class="flex-1">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="font-mono text-xs font-bold px-3 py-1 rounded-lg bg-white/[0.05] text-indigo-400 border border-white/10">
-              ${data.ticker}
-            </span>
-            <span class="font-mono text-xs text-sky-400">
-              📍 {data.location.city}, {data.location.country}
-            </span>
-            {data.badge && (
-              <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/30 font-medium">
-                {data.badge}
-              </span>
-            )}
-          </div>
-
-          <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-            {data.name}
-          </h1>
-          <div class="text-sm font-semibold text-indigo-400 mt-2">
-            Organized by {data.organizer}
-          </div>
-          <p class="text-sm sm:text-base text-slate-300 mt-3 max-w-2xl leading-relaxed">
-            {data.tagline}
-          </p>
-
-          <!-- Sector tags -->
-          <div class="flex flex-wrap gap-1.5 mt-5">
-            {data.sectors.map((sector) => (
-              <span class="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-white/[0.03] text-slate-300 border border-white/5">
-                {sector}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <!-- Closing Countdown & CTA Block -->
-        <div class="w-full lg:w-84 flex flex-col gap-3.5">
-          <!-- Realtime countdown island -->
-          <DeadlineCountdown
-            client:load
-            closingDate={data.closingDate}
-            isRolling={data.isRolling}
-            size="lg"
-            showDetails={true}
-          />
-
-          <!-- Action Buttons -->
-          {isClosed ? (
-            <div class="w-full py-3.5 px-5 bg-rose-500/10 border border-rose-500/30 text-rose-300 font-mono font-bold text-center rounded-xl flex items-center justify-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-rose-500"></span>
-              <span>Applications Closed</span>
-            </div>
-          ) : (
-            <a
-              href={data.applyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full py-3.5 px-5 bg-indigo-600 hover:bg-indigo-500 text-white font-mono font-bold text-center rounded-xl transition-all shadow-glow flex items-center justify-center gap-2 group"
-            >
-              <span>Apply for Batch</span>
-              <span class="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
-            </a>
-          )}
-
-          <a
-            href={data.website}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="w-full py-2.5 px-4 bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 text-slate-300 hover:text-white font-mono text-xs font-semibold text-center rounded-xl transition-all flex items-center justify-center gap-1.5"
-          >
-            <span>{isClosed ? 'Visit Founders Website / Waitlist' : 'Visit Official Website'}</span>
-            <span class="text-[11px] text-slate-500">↗</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quick Stats Grid (Frontier Foundry Bento) -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-9">
-      <div class="foundry-card p-4 text-center">
-        <div class="text-[10px] uppercase font-mono text-slate-500">Check Size</div>
-        <div class="text-xl font-black text-amber-300 font-mono mt-1">{data.terms.checkDisplay}</div>
-        <div class="text-[10px] text-slate-400 mt-0.5">{data.terms.instrument}</div>
-      </div>
-
-      <div class="foundry-card p-4 text-center">
-        <div class="text-[10px] uppercase font-mono text-slate-500">Equity Taken</div>
-        <div class="text-xl font-black text-white font-mono mt-1">
-          {data.terms.equityPercent !== null ? `${data.terms.equityPercent}%` : '0%'}
-        </div>
-        <div class="text-[10px] text-slate-400 mt-0.5">
-          {data.terms.equityPercent === 0 ? 'Non-Dilutive' : 'Standard Dilution'}
-        </div>
-      </div>
-
-      <div class="foundry-card p-4 text-center">
-        <div class="text-[10px] uppercase font-mono text-slate-500">Valuation Cap</div>
-        <div class="text-xs font-bold text-slate-300 font-mono mt-2 truncate">
-          {data.terms.valuationCapDisplay}
-        </div>
-        <div class="text-[10px] text-slate-500 mt-0.5">Post-Money Cap</div>
-      </div>
-
-      <div class="foundry-card p-4 text-center">
-        <div class="text-[10px] uppercase font-mono text-slate-500">Batch Length</div>
-        <div class="text-xl font-black text-sky-400 font-mono mt-1">{data.durationWeeks} Wks</div>
-        <div class="text-[10px] text-slate-400 mt-0.5">{data.cohortStart}</div>
-      </div>
-
-      <div class="foundry-card p-4 text-center">
-        <div class="text-[10px] uppercase font-mono text-slate-500">Residency</div>
-        <div class="text-sm font-bold text-white font-mono mt-1.5">
-          {data.location.inPerson ? 'In-Person' : 'Hybrid'}
-        </div>
-        <div class="text-[10px] text-sky-400 mt-0.5 truncate">{data.location.city}</div>
-      </div>
-
-      <div class="foundry-card p-4 text-center">
-        <div class="text-[10px] uppercase font-mono text-slate-500">IP Retention</div>
-        <div class="text-xs font-bold text-emerald-400 font-mono mt-2">100% Retained</div>
-        <div class="text-[10px] text-slate-500 mt-0.5">Founder Owned</div>
-      </div>
-    </div>
-
-    <!-- Main Content Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-      <!-- Left Column: In-depth narrative & Overview -->
-      <div class="lg:col-span-2 space-y-8">
-        <!-- Markdown Body -->
-        <div class="foundry-card p-6 sm:p-9">
-          <div class="prose prose-invert max-w-none prose-headings:font-black prose-headings:text-white prose-p:text-slate-300 prose-p:leading-relaxed prose-li:text-slate-300 prose-strong:text-white prose-a:text-indigo-400 prose-hr:border-white/10">
-            <Content />
-          </div>
-        </div>
-
-        <!-- Hardware & Lab Facilities Detail -->
-        <div class="foundry-card p-6 sm:p-9">
-          <h2 class="text-2xl font-black text-white flex items-center gap-2.5 mb-3">
-            <span>🛠️</span>
-            <span>In-House Prototyping Labs & Machine Park</span>
-          </h2>
-          <p class="text-sm text-slate-400 mb-5 leading-relaxed">
-            Founders accepted into {data.name} receive direct 24/7 bench access to fabrication tooling, instrumentation, and compute nodes:
-          </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            {data.hardwareFacilities.map((fac) => (
-              <div class="bg-black/30 border border-white/5 rounded-xl p-4 flex items-start gap-3.5 hover:border-indigo-500/30 transition-colors">
-                <span class="text-indigo-400 text-lg font-bold">⚡</span>
-                <div>
-                  <div class="text-xs font-bold text-white">{fac}</div>
-                  <div class="text-[10px] text-slate-500 mt-0.5">24/7 cohort bench access</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Column: Terms, Perks & Selection Sidebar -->
-      <div class="space-y-6">
-        <!-- Terms and Conditions Card -->
-        <div class="foundry-card p-6 sm:p-7">
-          <h3 class="text-base font-bold text-white flex items-center gap-2 mb-4 font-mono">
-            <span>📜</span>
-            <span>Terms & Conditions Breakdown</span>
-          </h3>
-          <dl class="space-y-3 text-xs font-mono">
-            <div class="flex justify-between items-center py-2 border-b border-white/5">
-              <dt class="text-slate-400">Legal Instrument</dt>
-              <dd class="text-white font-bold">{data.terms.instrument}</dd>
-            </div>
-            <div class="flex justify-between items-center py-2 border-b border-white/5">
-              <dt class="text-slate-400">Check Amount</dt>
-              <dd class="text-amber-300 font-bold">{data.terms.checkDisplay}</dd>
-            </div>
-            <div class="flex justify-between items-center py-2 border-b border-white/5">
-              <dt class="text-slate-400">Equity Dilution</dt>
-              <dd class="text-white font-bold">
-                {data.terms.equityPercent !== null ? `${data.terms.equityPercent}%` : '0% (Non-dilutive)'}
-              </dd>
-            </div>
-            <div class="flex justify-between items-center py-2 border-b border-white/5">
-              <dt class="text-slate-400">Valuation Cap</dt>
-              <dd class="text-slate-300 font-bold">{data.terms.valuationCapDisplay}</dd>
-            </div>
-            <div class="flex justify-between items-center py-2 border-b border-white/5">
-              <dt class="text-slate-400">IP Assignment</dt>
-              <dd class="text-emerald-400 font-bold">{data.terms.ipOwnership}</dd>
-            </div>
-            {data.terms.stipend && (
-              <div class="py-2 border-b border-white/5">
-                <dt class="text-slate-400 mb-1">Stipend & Housing</dt>
-                <dd class="text-slate-300 leading-normal">{data.terms.stipend}</dd>
-              </div>
-            )}
-            <div class="py-2">
-              <dt class="text-slate-400 mb-1">Residency Requirement</dt>
-              <dd class="text-slate-300 leading-normal">{data.location.residencyDetails}</dd>
-            </div>
-          </dl>
-        </div>
-
-        <!-- Application Tips & Cheat Sheet -->
-        {data.applicationTips.length > 0 && (
-          <div class="foundry-card p-6 sm:p-7">
-            <h3 class="text-base font-bold text-white flex items-center gap-2 mb-3.5 font-mono">
-              <span>🎯</span>
-              <span>Application Cheat Sheet</span>
-            </h3>
-            <ul class="space-y-2.5 text-xs text-slate-300">
-              {data.applicationTips.map((tip) => (
-                <li class="flex items-start gap-2.5">
-                  <span class="text-sky-400 font-bold mt-0.5">✓</span>
-                  <span class="leading-relaxed">{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {isClosed ? (
+          <span class="text-xs font-mono font-bold px-3 py-1.5 rounded-xl bg-[#FF5E7E] text-black border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-black"></span>
+            <span>Archived Cohort · Applications Closed</span>
+          </span>
+        ) : (
+          <span class="text-xs font-mono font-bold px-3 py-1.5 rounded-xl bg-[#34D399] text-black border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-black animate-pulse"></span>
+            <span>Verified Active Cohort</span>
+          </span>
         )}
+      </div>
 
-        <!-- Perks & Network -->
-        <div class="foundry-card p-6 sm:p-7">
-          <h3 class="text-base font-bold text-white flex items-center gap-2 mb-3.5 font-mono">
-            <span>🎁</span>
-            <span>Perks & Credits</span>
-          </h3>
-          <ul class="space-y-2 text-xs text-slate-300">
-            {data.perks.map((perk) => (
-              <li class="flex items-start gap-2.5">
-                <span class="text-amber-400 mt-0.5">✦</span>
-                <span class="leading-relaxed">{perk}</span>
-              </li>
-            ))}
-          </ul>
+      <!-- Closed Cohort Notice Banner (if isClosed) -->
+      {isClosed && (
+        <div class="mb-8 p-5 rounded-2xl bg-[#FF5E7E] border-2 border-black shadow-[3px_3px_0px_#000] text-black font-mono flex items-start gap-4 text-sm">
+          <span class="text-2xl">⚠️</span>
+          <div class="flex-1">
+            <strong class="font-black text-black text-base block mb-1">
+              Notice: Applications for this cohort closed on {new Date(data.closingDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.
+            </strong>
+            <p class="text-xs text-black/90 font-semibold leading-relaxed">
+              This program has been automatically excluded from the SiliconBatch live radar. This page is preserved for historical terms, hardware equipment specs, and founder reference.
+            </p>
+          </div>
         </div>
+      )}
 
-        <!-- Notable Alumni -->
-        {data.notableAlumni.length > 0 && (
-          <div class="foundry-card p-6 sm:p-7">
-            <h3 class="text-base font-bold text-white flex items-center gap-2 mb-3.5 font-mono">
-              <span>🏆</span>
-              <span>Notable Alumni</span>
-            </h3>
-            <div class="flex flex-wrap gap-2">
-              {data.notableAlumni.map((alumnus) => (
-                <span class="text-xs font-mono px-3 py-1 rounded-lg bg-white/[0.03] text-slate-200 border border-white/5">
-                  {alumnus}
+      <!-- Hero Card (Neo-Brutal Pop White Card) -->
+      <div class="bg-white border-[2.5px] border-black shadow-[6px_6px_0px_#000] p-6 sm:p-10 mb-8 rounded-2xl relative overflow-hidden">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative z-10">
+          <!-- Program Identity -->
+          <div class="flex-1">
+            <div class="flex flex-wrap items-center gap-2.5 mb-4">
+              <span class="bg-[#FFE600] text-black border-2 border-black shadow-[2px_2px_0px_#000] font-mono font-black text-xs px-3 py-1 rounded-lg">
+                ${data.ticker}
+              </span>
+              <span class="bg-slate-100 text-black border border-black shadow-[1px_1px_0px_#000] font-mono font-bold text-xs px-3 py-1 rounded-lg">
+                📍 {data.location.city}, {data.location.country}
+              </span>
+              {data.badge && (
+                <span class="bg-[#FF5E7E] text-black border-2 border-black shadow-[2px_2px_0px_#000] font-mono font-bold text-xs px-2.5 py-1 rounded-lg">
+                  {data.badge}
+                </span>
+              )}
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl font-black text-black tracking-tight leading-tight">
+              {data.name}
+            </h1>
+            <div class="text-sm font-bold uppercase tracking-wider text-slate-700 font-mono mt-2">
+              Organized by <span class="text-black underline decoration-2 decoration-[#FFE600]">{data.organizer}</span>
+            </div>
+            <p class="text-base sm:text-lg text-slate-800 mt-4 max-w-2xl font-medium leading-relaxed">
+              {data.tagline}
+            </p>
+
+            <!-- Sector tags -->
+            <div class="flex flex-wrap gap-2 mt-5">
+              {data.sectors.map((sector) => (
+                <span class="text-xs font-mono font-bold px-3 py-1 rounded-lg bg-yellow-100 text-black border border-black shadow-[1px_1px_0px_#000]">
+                  {sector}
                 </span>
               ))}
             </div>
           </div>
-        )}
+
+          <!-- Closing Countdown & CTA Block -->
+          <div class="w-full lg:w-84 flex flex-col gap-4">
+            <!-- Countdown Container -->
+            <div class="bg-[#F7F2E8] border-2 border-black shadow-[3px_3px_0px_#000] p-4 rounded-xl">
+              <DeadlineCountdown
+                client:load
+                closingDate={data.closingDate}
+                isRolling={data.isRolling}
+                size="lg"
+                showDetails={true}
+              />
+            </div>
+
+            <!-- Action Buttons -->
+            {isClosed ? (
+              <div class="w-full py-4 px-5 bg-black border-2 border-black shadow-[4px_4px_0px_#000] text-white font-mono font-black text-center rounded-xl flex items-center justify-center gap-2 uppercase text-sm">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FF5E7E]"></span>
+                <span>Applications Closed</span>
+              </div>
+            ) : (
+              <a
+                href={data.applyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full py-4 px-5 bg-[#FFE600] hover:bg-[#FACC15] border-[2.5px] border-black shadow-[4px_4px_0px_#000] font-black text-black uppercase text-center rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all flex items-center justify-center gap-2 group text-base"
+              >
+                <span>APPLY FOR BATCH ↗</span>
+              </a>
+            )}
+
+            <a
+              href={data.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full py-3 px-4 bg-white hover:bg-slate-100 border-2 border-black shadow-[3px_3px_0px_#000] text-black font-mono text-xs font-bold text-center rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center justify-center gap-2"
+            >
+              <span>{isClosed ? 'Visit Founders Website / Waitlist ↗' : 'Visit Official Website ↗'}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Bento Grid (Check Size, Equity %, Valuation Cap, Duration, Residency, IP) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 mb-10">
+        <div class="bg-[#FFE600] border-2 border-black shadow-[3px_3px_0px_#000] p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
+          <div class="text-[10px] uppercase font-black text-black/70 tracking-wider">Check Size</div>
+          <div class="text-xl font-black text-black mt-1">{data.terms.checkDisplay}</div>
+          <div class="text-[10px] font-bold text-black/70 mt-0.5 truncate">{data.terms.instrument}</div>
+        </div>
+
+        <div class="bg-white border-2 border-black shadow-[3px_3px_0px_#000] p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
+          <div class="text-[10px] uppercase font-black text-black/70 tracking-wider">Equity Taken</div>
+          <div class="text-xl font-black text-black mt-1">
+            {data.terms.equityPercent !== null ? `${data.terms.equityPercent}%` : '0%'}
+          </div>
+          <div class="text-[10px] font-bold text-black/70 mt-0.5">
+            {data.terms.equityPercent === 0 ? 'Non-Dilutive' : 'Standard Dilution'}
+          </div>
+        </div>
+
+        <div class="bg-[#93C5FD] border-2 border-black shadow-[3px_3px_0px_#000] p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
+          <div class="text-[10px] uppercase font-black text-black/70 tracking-wider">Valuation Cap</div>
+          <div class="text-xs font-black text-black mt-2 truncate">
+            {data.terms.valuationCapDisplay}
+          </div>
+          <div class="text-[10px] font-bold text-black/70 mt-0.5">Post-Money Cap</div>
+        </div>
+
+        <div class="bg-[#FDE047] border-2 border-black shadow-[3px_3px_0px_#000] p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
+          <div class="text-[10px] uppercase font-black text-black/70 tracking-wider">Duration</div>
+          <div class="text-xl font-black text-black mt-1">{data.durationWeeks} Wks</div>
+          <div class="text-[10px] font-bold text-black/70 mt-0.5 truncate">{data.cohortStart}</div>
+        </div>
+
+        <div class="bg-[#C4B5FD] border-2 border-black shadow-[3px_3px_0px_#000] p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
+          <div class="text-[10px] uppercase font-black text-black/70 tracking-wider">Residency</div>
+          <div class="text-sm font-black text-black mt-1.5">
+            {data.location.inPerson ? 'In-Person' : 'Hybrid'}
+          </div>
+          <div class="text-[10px] font-bold text-black/70 mt-0.5 truncate">{data.location.city}</div>
+        </div>
+
+        <div class="bg-[#34D399] border-2 border-black shadow-[3px_3px_0px_#000] p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
+          <div class="text-[10px] uppercase font-black text-black/70 tracking-wider">Founder IP</div>
+          <div class="text-xs font-black text-black mt-2">100% Retained</div>
+          <div class="text-[10px] font-bold text-black/70 mt-0.5">Founder Owned</div>
+        </div>
+      </div>
+
+      <!-- Main Content Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <!-- Left Column: Markdown Content & Hardware Facilities -->
+        <div class="lg:col-span-2 space-y-8">
+          <!-- Markdown Body -->
+          <div class="bg-white border-[2.5px] border-black rounded-2xl p-6 sm:p-9 shadow-[5px_5px_0px_#000]">
+            <div class="prose max-w-none prose-headings:font-black prose-headings:text-black prose-p:text-slate-800 prose-p:font-medium prose-p:leading-relaxed prose-li:text-slate-800 prose-li:font-medium prose-strong:text-black prose-strong:font-black prose-a:text-[#2563EB] prose-a:font-bold prose-hr:border-black/20">
+              <Content />
+            </div>
+          </div>
+
+          <!-- Hardware & Lab Facilities Detail (Physical Equipment Tags) -->
+          <div class="bg-white border-[2.5px] border-black rounded-2xl p-6 sm:p-9 shadow-[5px_5px_0px_#000]">
+            <div class="flex items-center justify-between mb-3">
+              <h2 class="text-2xl font-black text-black flex items-center gap-2.5">
+                <span>🛠️</span>
+                <span>In-House Prototyping Labs & Machine Park</span>
+              </h2>
+              <span class="bg-[#FFE600] text-black font-mono font-bold text-xs px-2.5 py-1 rounded-md border border-black shadow-[2px_2px_0px_#000]">
+                24/7 Access
+              </span>
+            </div>
+            <p class="text-sm font-medium text-slate-700 mb-6 leading-relaxed">
+              Founders accepted into <strong>{data.name}</strong> receive direct 24/7 bench access to fabrication tooling, instrumentation, and compute nodes:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {data.hardwareFacilities.map((fac) => (
+                <div class="bg-[#F7F2E8] border-2 border-black rounded-xl p-4 flex items-start gap-3.5 shadow-[3px_3px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
+                  <span class="bg-[#FFE600] text-black border-2 border-black rounded-lg px-2.5 py-1 font-mono font-black text-sm shadow-[1px_1px_0px_#000]">
+                    ⚡
+                  </span>
+                  <div>
+                    <div class="text-sm font-black text-black font-mono">{fac}</div>
+                    <div class="text-[11px] font-mono text-slate-600 font-bold mt-0.5">Physical Prototyping Bench</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Deal Terms, Perks & Selection Sidebar -->
+        <div class="space-y-6">
+          <!-- Terms and Conditions Card with 100% Founder IP Ownership Green Sticker Badge -->
+          <div class="bg-white border-2 border-black rounded-2xl p-6 sm:p-7 shadow-[4px_4px_0px_#000]">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-base font-black text-black flex items-center gap-2 font-mono">
+                <span>📜</span>
+                <span>Terms & Legal Breakdown</span>
+              </h3>
+              <span class="bg-[#34D399] text-black border-2 border-black shadow-[2px_2px_0px_#000] px-2.5 py-1 rounded-lg font-black text-xs font-mono">
+                100% Founder IP
+              </span>
+            </div>
+
+            <dl class="space-y-3 text-xs font-mono">
+              <div class="flex justify-between items-center py-2 border-b border-black/10">
+                <dt class="text-slate-600 font-bold">Legal Instrument</dt>
+                <dd class="text-black font-black">{data.terms.instrument}</dd>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-black/10">
+                <dt class="text-slate-600 font-bold">Check Amount</dt>
+                <dd class="text-black font-black bg-yellow-200 px-2 py-0.5 rounded border border-black">{data.terms.checkDisplay}</dd>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-black/10">
+                <dt class="text-slate-600 font-bold">Equity Dilution</dt>
+                <dd class="text-black font-black">
+                  {data.terms.equityPercent !== null ? `${data.terms.equityPercent}%` : '0% (Non-dilutive)'}
+                </dd>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-black/10">
+                <dt class="text-slate-600 font-bold">Valuation Cap</dt>
+                <dd class="text-black font-black">{data.terms.valuationCapDisplay}</dd>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-black/10">
+                <dt class="text-slate-600 font-bold">IP Assignment</dt>
+                <dd class="text-black font-black bg-[#34D399] px-2 py-0.5 rounded border border-black">{data.terms.ipOwnership}</dd>
+              </div>
+              {data.terms.stipend && (
+                <div class="py-2 border-b border-black/10">
+                  <dt class="text-slate-600 font-bold mb-1">Stipend & Housing</dt>
+                  <dd class="text-slate-900 font-medium leading-normal">{data.terms.stipend}</dd>
+                </div>
+              )}
+              <div class="py-2">
+                <dt class="text-slate-600 font-bold mb-1">Residency Requirement</dt>
+                <dd class="text-slate-900 font-medium leading-normal">{data.location.residencyDetails}</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Application Tips & Cheat Sheet -->
+          {data.applicationTips && data.applicationTips.length > 0 && (
+            <div class="bg-white border-2 border-black rounded-2xl p-6 sm:p-7 shadow-[4px_4px_0px_#000]">
+              <h3 class="text-base font-black text-black flex items-center gap-2 mb-3.5 font-mono">
+                <span>🎯</span>
+                <span>Application Cheat Sheet</span>
+              </h3>
+              <ul class="space-y-2.5 text-xs text-slate-800 font-mono">
+                {data.applicationTips.map((tip) => (
+                  <li class="flex items-start gap-2.5">
+                    <span class="bg-[#FFE600] text-black font-black px-1.5 py-0.5 rounded border border-black mt-0.5 text-[10px]">
+                      ✓
+                    </span>
+                    <span class="leading-relaxed font-medium">{tip}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Perks & Network -->
+          {data.perks && data.perks.length > 0 && (
+            <div class="bg-white border-2 border-black rounded-2xl p-6 sm:p-7 shadow-[4px_4px_0px_#000]">
+              <h3 class="text-base font-black text-black flex items-center gap-2 mb-3.5 font-mono">
+                <span>🎁</span>
+                <span>Perks & Credits</span>
+              </h3>
+              <ul class="space-y-2 text-xs text-slate-800 font-mono">
+                {data.perks.map((perk) => (
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-[#2563EB] font-black mt-0.5">✦</span>
+                    <span class="leading-relaxed font-medium">{perk}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Notable Alumni -->
+          {data.notableAlumni && data.notableAlumni.length > 0 && (
+            <div class="bg-white border-2 border-black rounded-2xl p-6 sm:p-7 shadow-[4px_4px_0px_#000]">
+              <h3 class="text-base font-black text-black flex items-center gap-2 mb-3.5 font-mono">
+                <span>🏆</span>
+                <span>Notable Alumni</span>
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {data.notableAlumni.map((alumnus) => (
+                  <span class="text-xs font-mono font-bold px-3 py-1 rounded-lg bg-[#FFE600] text-black border border-black shadow-[2px_2px_0px_#000]">
+                    {alumnus}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   </div>

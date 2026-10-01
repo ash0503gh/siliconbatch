@@ -65,41 +65,45 @@ const tickerItems = programItems.map((p) => ({
   <!-- Live Stock Ticker Bar -->
   <LiveTicker client:load items={tickerItems} />
 
-  <!-- Hero Header (Frontier Foundry) -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-8">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/5 pb-8">
-      <div>
-        <div class="inline-flex items-center gap-2 text-xs font-mono text-indigo-400 font-semibold mb-3 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20">
-          <span>⚡ FRONTIER ACCELERATOR RADAR</span>
-          <span class="text-slate-600">·</span>
-          <span class="text-sky-400">GLOBAL PIPELINE</span>
-        </div>
-        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-          Physical AI & Hardware Accelerators
-        </h1>
-        <p class="text-sm sm:text-base text-slate-400 mt-3 max-w-2xl leading-relaxed">
-          Tracking every active incubator and accelerator program currently accepting applications for
-          <strong class="text-white font-semibold"> Physical AI, Robotics, Custom Silicon, and Advanced Electronics</strong>.
-          Verified closing dates, in-house hardware lab specs, and deal terms.
-        </p>
-      </div>
-
-      <!-- Quick status indicator badge -->
-      <div class="flex items-center gap-3.5 bg-white/[0.03] border border-white/10 px-4 py-3 rounded-2xl font-mono text-xs backdrop-blur-xl shadow-glow">
-        <span class="relative flex h-2.5 w-2.5">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-        </span>
+  <!-- Neo-Brutal Pop Main Surface -->
+  <div class="bg-[#F4EFE6] text-black min-h-screen">
+    <!-- Hero Header (Frontier Neo-Brutal Pop) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b-2 border-black pb-8">
         <div>
-          <div class="text-white font-bold">{openPrograms.length} Verified Open Cohorts</div>
-          <div class="text-[10px] text-slate-500">Auto-excluding expired deadlines</div>
+          <!-- Cadmium yellow pill -->
+          <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-black mb-3 px-3.5 py-1.5 rounded-full bg-[#FFE600] border-2 border-black shadow-[2px_2px_0px_#000]">
+            <span>⚡ FRONTIER ACCELERATOR RADAR</span>
+            <span class="text-black font-black">·</span>
+            <span>GLOBAL PIPELINE</span>
+          </div>
+          <h1 class="text-4xl sm:text-6xl font-black text-black tracking-tight leading-tight">
+            Physical AI & Hardware Accelerators
+          </h1>
+          <p class="text-base sm:text-lg text-slate-800 font-medium mt-3 max-w-2xl leading-relaxed">
+            Tracking every active incubator and accelerator program currently accepting applications for
+            <strong class="text-black font-black underline decoration-2 decoration-[#FFE600]"> Physical AI, Robotics, Custom Silicon, and Advanced Electronics</strong>.
+            Verified open closing dates, in-house hardware specs, and deal terms.
+          </p>
+        </div>
+
+        <!-- Cohort counter card: Mint green box with border-2 border-black shadow-[4px_4px_0px_#000] p-4 font-mono font-bold text-black -->
+        <div class="flex items-center gap-3.5 bg-[#34D399] border-2 border-black shadow-[4px_4px_0px_#000] p-4 rounded-xl font-mono font-bold text-black">
+          <span class="relative flex h-3.5 w-3.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-40"></span>
+            <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-black"></span>
+          </span>
+          <div>
+            <div class="text-base font-black text-black">{openPrograms.length} Verified Open Cohorts</div>
+            <div class="text-[11px] text-black/80 font-bold uppercase tracking-wider">Auto-excluding expired deadlines</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Interactive Dashboard: KPIs, Search, Filter Tabs & Program Cards -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-    <RadarDashboard client:load initialPrograms={programItems} />
+    <!-- Interactive Dashboard: KPIs, Search, Filter Tabs & Program Cards -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <RadarDashboard client:load initialPrograms={programItems} />
+    </div>
   </div>
 </Layout>

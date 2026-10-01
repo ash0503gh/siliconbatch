@@ -49,8 +49,8 @@ export default function DeadlineCountdown({
 
   if (isRolling) {
     return (
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 font-mono text-[11px] font-semibold tracking-wide">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#10B981] border-2 border-black text-black font-mono text-[11px] font-black shadow-[2px_2px_0px_#000] tracking-wide">
+        <span className="w-2 h-2 rounded-full bg-black animate-pulse"></span>
         <span>Rolling Applications Open</span>
       </div>
     );
@@ -58,8 +58,8 @@ export default function DeadlineCountdown({
 
   if (timeLeft.isExpired) {
     return (
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/25 text-rose-400 font-mono text-[11px] font-semibold">
-        <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-200 border-2 border-black text-slate-800 font-mono text-[11px] font-black shadow-[2px_2px_0px_#000]">
+        <span className="w-2 h-2 rounded-full bg-neutral-600"></span>
         <span>Applications Closed</span>
       </div>
     );
@@ -67,72 +67,64 @@ export default function DeadlineCountdown({
 
   const isUrgent = timeLeft.days <= 7;
 
-  // Option 1: Frontier Foundry Inline Pill for Bento Cards
+  // Neo-Brutal Inline Pill for Bento Cards
   if (size === 'inline' || size === 'sm' || size === 'md') {
     return (
       <div
-        className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl border font-mono text-xs transition-all ${
+        className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl border-2 border-black font-mono text-xs shadow-[2px_2px_0px_#000] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] ${
           isUrgent
-            ? 'bg-rose-500/10 border-rose-500/30 text-rose-300 hover:bg-rose-500/15'
-            : 'bg-indigo-500/10 border-indigo-500/25 text-indigo-200 hover:bg-indigo-500/15'
+            ? 'bg-[#FF5E7E] text-black'
+            : 'bg-white text-black'
         }`}
       >
         <div className="flex items-center gap-2">
-          <span className="relative flex h-2 w-2">
+          <span className="relative flex h-2.5 w-2.5">
             <span
               className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
-                isUrgent ? 'bg-rose-400' : 'bg-indigo-400'
+                isUrgent ? 'bg-black' : 'bg-emerald-500'
               }`}
             ></span>
             <span
-              className={`relative inline-flex rounded-full h-2 w-2 ${
-                isUrgent ? 'bg-rose-500' : 'bg-indigo-500'
+              className={`relative inline-flex rounded-full h-2.5 w-2.5 border border-black ${
+                isUrgent ? 'bg-black' : 'bg-emerald-500'
               }`}
             ></span>
           </span>
-          <span className="text-[11px] font-semibold tracking-wider uppercase text-slate-400">
-            {isUrgent ? 'Closing Soon' : 'Application Window'}
+          <span className="text-[11px] font-black tracking-wider uppercase">
+            {isUrgent ? '⚡ Urgent Closing' : '⏳ Application Window'}
           </span>
         </div>
 
-        <div className="flex items-center gap-1 font-bold tabular-nums">
-          <span className={isUrgent ? 'text-rose-400' : 'text-white'}>
-            {timeLeft.days}d
-          </span>
-          <span className="text-slate-500">:</span>
-          <span className={isUrgent ? 'text-rose-400' : 'text-slate-300'}>
-            {String(timeLeft.hours).padStart(2, '0')}h
-          </span>
-          <span className="text-slate-500">:</span>
-          <span className={isUrgent ? 'text-rose-400' : 'text-slate-300'}>
-            {String(timeLeft.minutes).padStart(2, '0')}m
-          </span>
+        <div className="flex items-center gap-1 font-black tabular-nums bg-white/70 px-2 py-0.5 rounded-md border border-black text-black">
+          <span>{timeLeft.days}d</span>
+          <span className="text-black/50">:</span>
+          <span>{String(timeLeft.hours).padStart(2, '0')}h</span>
+          <span className="text-black/50">:</span>
+          <span>{String(timeLeft.minutes).padStart(2, '0')}m</span>
         </div>
       </div>
     );
   }
 
-  // Full Hero Glass Countdown (for Experience Page)
+  // Full Hero Neo-Brutal Countdown (for Experience Page)
   return (
     <div
-      className={`flex flex-col gap-2 p-4 rounded-2xl border font-mono backdrop-blur-xl ${
-        isUrgent
-          ? 'bg-rose-950/20 border-rose-500/30 text-rose-300 shadow-glow-rose'
-          : 'bg-indigo-950/20 border-indigo-500/30 text-indigo-200 shadow-glow'
+      className={`flex flex-col gap-3 p-4 sm:p-5 rounded-2xl border-[2.5px] border-black font-mono shadow-[4px_4px_0px_#000] ${
+        isUrgent ? 'bg-[#FFF1F2]' : 'bg-white'
       }`}
     >
-      <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider mb-1">
-        <span className="flex items-center gap-2 text-slate-300">
+      <div className="flex items-center justify-between text-xs font-black uppercase tracking-wider mb-1">
+        <span className="flex items-center gap-2 text-black">
           <span
-            className={`w-2 h-2 rounded-full ${
-              isUrgent ? 'bg-rose-400 animate-ping' : 'bg-emerald-400 animate-pulse'
+            className={`w-2.5 h-2.5 rounded-full border border-black ${
+              isUrgent ? 'bg-[#FF5E7E] animate-ping' : 'bg-[#10B981] animate-pulse'
             }`}
           ></span>
           <span>Application Countdown</span>
         </span>
         <span
-          className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${
-            isUrgent ? 'bg-rose-500/25 text-rose-300 border border-rose-500/40' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+          className={`text-[11px] px-2.5 py-1 rounded-md font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_#000] ${
+            isUrgent ? 'bg-[#FF5E7E] text-black' : 'bg-[#FFE600] text-black'
           }`}
         >
           {isUrgent ? '⚡ Urgent Closing' : '🟢 Accepting Cohort'}
@@ -140,36 +132,36 @@ export default function DeadlineCountdown({
       </div>
 
       <div className="grid grid-cols-4 gap-2 text-center my-1">
-        <div className="bg-slate-900/80 rounded-xl p-2.5 border border-white/10">
-          <div className="text-2xl font-black tracking-tight text-white tabular-nums">
+        <div className="bg-[#F7F2E8] rounded-xl p-2.5 sm:p-3 border-2 border-black shadow-[2px_2px_0px_#000]">
+          <div className="text-2xl sm:text-4xl font-black tracking-tight text-black tabular-nums">
             {timeLeft.days}
           </div>
-          <div className="text-[10px] uppercase tracking-widest text-slate-400 mt-0.5">Days</div>
+          <div className="text-[10px] sm:text-[11px] uppercase tracking-widest font-black text-slate-800 mt-1">Days</div>
         </div>
-        <div className="bg-slate-900/80 rounded-xl p-2.5 border border-white/10">
-          <div className="text-2xl font-black tracking-tight text-white tabular-nums">
+        <div className="bg-[#F7F2E8] rounded-xl p-2.5 sm:p-3 border-2 border-black shadow-[2px_2px_0px_#000]">
+          <div className="text-2xl sm:text-4xl font-black tracking-tight text-black tabular-nums">
             {String(timeLeft.hours).padStart(2, '0')}
           </div>
-          <div className="text-[10px] uppercase tracking-widest text-slate-400 mt-0.5">Hours</div>
+          <div className="text-[10px] sm:text-[11px] uppercase tracking-widest font-black text-slate-800 mt-1">Hours</div>
         </div>
-        <div className="bg-slate-900/80 rounded-xl p-2.5 border border-white/10">
-          <div className="text-2xl font-black tracking-tight text-white tabular-nums">
+        <div className="bg-[#F7F2E8] rounded-xl p-2.5 sm:p-3 border-2 border-black shadow-[2px_2px_0px_#000]">
+          <div className="text-2xl sm:text-4xl font-black tracking-tight text-black tabular-nums">
             {String(timeLeft.minutes).padStart(2, '0')}
           </div>
-          <div className="text-[10px] uppercase tracking-widest text-slate-400 mt-0.5">Mins</div>
+          <div className="text-[10px] sm:text-[11px] uppercase tracking-widest font-black text-slate-800 mt-1">Mins</div>
         </div>
-        <div className="bg-slate-900/80 rounded-xl p-2.5 border border-white/10">
-          <div className="text-2xl font-black tracking-tight text-white tabular-nums">
+        <div className="bg-[#F7F2E8] rounded-xl p-2.5 sm:p-3 border-2 border-black shadow-[2px_2px_0px_#000]">
+          <div className="text-2xl sm:text-4xl font-black tracking-tight text-black tabular-nums">
             {String(timeLeft.seconds).padStart(2, '0')}
           </div>
-          <div className="text-[10px] uppercase tracking-widest text-slate-400 mt-0.5">Secs</div>
+          <div className="text-[10px] sm:text-[11px] uppercase tracking-widest font-black text-slate-800 mt-1">Secs</div>
         </div>
       </div>
 
       {showDetails && (
-        <div className="text-[11px] text-slate-400 text-center mt-1">
+        <div className="text-xs font-bold text-slate-700 text-center mt-1 border-t-2 border-black/10 pt-2.5">
           Final deadline:{' '}
-          <strong className="text-white font-semibold">
+          <strong className="text-black font-black underline decoration-[#FFE600] decoration-4">
             {new Date(closingDate).toLocaleDateString('en-US', {
               month: 'short',
               day: 'numeric',
