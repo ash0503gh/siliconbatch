@@ -1,0 +1,17 @@
+services:
+  # Render Web Service
+  - type: web
+    name: siliconbatch-service
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+
+  # Render Static Site (Alternative zero-cost CDN option)
+  - type: static
+    name: siliconbatch-static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist

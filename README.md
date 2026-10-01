@@ -137,3 +137,24 @@ Write your detailed markdown narrative here...
 ```
 
 SiliconBatch automatically validates the schema and only shows the program if `closingDate` has not yet elapsed.
+
+---
+
+## 🌐 Deploying to Render
+
+### Option 1: Web Service (Node.js)
+1. Go to your [Render Dashboard](https://dashboard.render.com) and click **New + > Web Service**.
+2. Connect the repository `https://github.com/ash0503gh/siliconbatch`.
+3. Set the following settings:
+   * **Runtime**: `Node`
+   * **Build Command**: `npm install && npm run build`
+   * **Start Command**: `npm start`
+4. Click **Create Web Service**.
+
+### Option 2: Static Site (Fast Global CDN)
+1. Click **New + > Static Site**.
+2. Connect `https://github.com/ash0503gh/siliconbatch`.
+3. Set:
+   * **Build Command**: `npm install && npm run build`
+   * **Publish Directory**: `dist`
+4. Click **Create Static Site**.
