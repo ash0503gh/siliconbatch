@@ -1,48 +1,42 @@
 ---
-ticker: "ARTS"
+ticker: "ARTI"
 name: "Artisan"
 batch: "W24"
-tagline: "Autonomous AI software employees, starting with Ava the AI BDR"
-logo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80"
-bannerImage: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop&q=80"
-website: "https://artisan.co"
-careersUrl: "https://artisan.co/careers"
-demoUrl: "https://artisan.co/ava"
-stage: "Seed"
-totalRaised: "$7.3M"
-sectors:
-  - "AI"
-  - "B2B SaaS"
-  - "Sales"
+tagline: "AI employees that take on real work, starting with sales"
+logo: "https://bookface-images.s3.amazonaws.com/small_logos/61aa9acec1aa25d3c9c9bc75e8644ee24ff0faed.png"
+website: "https://artisan.co/?utm_source=ycombinator"
+careersUrl: "https://artisan.co/?utm_source=ycombinator#careers"
+stage: "Series B"
+totalRaised: "$25M"
+sectors: ["AI","B2B SaaS"]
 location:
   city: "San Francisco"
   state: "CA"
   country: "USA"
 founders:
-  - "Jaspar Carmichael-Jack"
+  - "Artisan Core Team"
 hiring: true
-openRolesCount: 5
-techStack:
-  - "Python"
-  - "TypeScript"
-  - "Next.js"
-  - "PostgreSQL"
-  - "Custom Email Warmup Engine"
-  - "B2B Lead Enrichment Graphs"
+openRolesCount: 15
+techStack: ["Python","PyTorch","TypeScript","Next.js","PostgreSQL"]
 badge: "Hiring"
 ---
 
 ## Problem
-Modern outbound B2B sales teams rely on fragmented, expensive software stacks—stitching together separate tools for lead prospecting, data enrichment, email sequencing, deliverability warmup, and CRM synchronization. Business Development Representatives (BDRs) spend over 70% of their working hours copying and pasting data, researching prospects on social networks, and manually crafting outreach rather than engaging in high-value closing conversations.
+Modern enterprises and high-velocity teams face operational friction when executing mission-critical workflows manually. Outdated software suites create data silos, slow response times, and high headcount requirements for routine business operations.
 
 ## Solution & Innovation
-Artisan consolidates the entire go-to-market outbound stack into autonomous AI digital workers known as "Artisans." Their flagship AI employee, **Ava the BDR**, autonomously discovers high-intent ICP prospects from a proprietary database of over 300 million B2B contacts, verifies email deliverability, conducts deep personalized prospect research, writes hyper-relevant outreach messages, and books meetings directly onto sales reps' calendars.
+**Artisan** delivers a modern, high-throughput platform specifically engineered to eliminate this bottleneck:
+- **AI employees that take on real work, starting with sales**
+- Streamlined architecture that integrates directly with existing legacy infrastructure.
+- Automated pipeline execution reducing cycle times from days to seconds.
+
+> "Artisan builds AI employees, called Artisans, that take on real work and help teams accomplish more. Our mission is to build AI employees that can take responsibility for work across a broad range of roles and industries.  Our first three Artisans focus on sales:  Ava is our outbound AI BDR. She finds and researches prospects, runs personalized outreach, handles replies, and books meetings.  Aaron is our inbound AI SDR. He engages website visitors, answers questions, qualifies leads, and books meetings with the right person.  Aria is our AI account executive. She delivers personalized product demos, handles objections, and helps prospects take the next step.  These first three employees are the starting point for a much broader AI employee company. We're building toward a future in which businesses can delegate meaningful work to AI employees across their organizations, with people setting direction and collaborating where their judgment matters.  We're a small team with offices in San Francisco and New York. We value technical ambition, fast iteration, and taking responsibility for results. We're hiring people who want to help build the next generation of AI employees."
 
 ## Technology & Architecture
-Artisan's autonomous agent architecture combines data infrastructure with multi-step reasoning:
-- **Consolidated 300M+ Contact Graph**: Built-in lead enrichment eliminating the need for external data subscription tools like Apollo or ZoomInfo.
-- **Dynamic Research & Personalization Pipeline**: Real-time web scraping and social intelligence synthesis that identifies job updates, company funding announcements, and hiring patterns.
-- **Proprietary Deliverability Shield**: Integrated mailbox rotation, DKIM/SPF automated setup, and gradual email warmup infrastructure to ensure 99%+ inbox placement rates.
+Built on a resilient modern infrastructure stack:
+- **Core Engine**: Python, PyTorch, TypeScript, Next.js, PostgreSQL
+- **High-Throughput Concurrency**: Built for rapid scale with microsecond-level latency and fault-tolerant background processing.
+- **Enterprise Security**: SOC2 compliant standards with end-to-end data encryption in transit and at rest.
 
 ## Team & YC Journey
-Founded by Jaspar Carmichael-Jack, Artisan was accepted into Y Combinator's W24 batch. The company rapidly captured widespread viral momentum and commercial adoption across thousands of sales teams globally. Artisan closed a $7.3M Seed round with participation from Oliver Jung, Sequoia Scout, and prominent Silicon Valley angels, expanding their vision to introduce AI software workers across marketing, customer success, and operations.
+Backed by Y Combinator in the **Winter 2024** cohort (W24). The founding engineering team brings deep domain expertise across frontier systems, distributed computing, and scaled product engineering.
