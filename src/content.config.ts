@@ -60,4 +60,32 @@ const programs = defineCollection({
   }),
 });
 
-export const collections = { programs };
+const companies = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/companies' }),
+  schema: z.object({
+    ticker: z.string(),
+    name: z.string(),
+    batch: z.string(), // e.g. "W24", "S24", "W25", "S23"
+    tagline: z.string(),
+    logo: z.string(),
+    bannerImage: z.string().optional(),
+    website: z.string().url(),
+    careersUrl: z.string().url().optional(),
+    demoUrl: z.string().url().optional(),
+    stage: z.string(), // e.g. "Seed", "Series A", "Series B"
+    totalRaised: z.string(), // e.g. "$120M", "$5.3M", "$25M"
+    sectors: z.array(z.string()), // e.g. ["AI", "Hardware"], ["Robotics", "Physical AI"], ["DevTools"], ["B2B SaaS"]
+    location: z.object({
+      city: z.string(),
+      state: z.string().optional(),
+      country: z.string(),
+    }),
+    founders: z.array(z.string()),
+    hiring: z.boolean().default(false),
+    openRolesCount: z.number().default(0),
+    techStack: z.array(z.string()).default([]),
+    badge: z.string().optional(),
+  }),
+});
+
+export const collections = { programs, companies };

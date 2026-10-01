@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import CompaniesDashboard, { type CompanyItem } from '../../components/CompaniesDashboard';
+
+const allCompanies = await getCollection('companies');
+
+// Sort alphabetically by company name
+const sortedCompanies = [...allCompanies].sort((a, b) => {
+  return a.data.name.localeCompare(b.data.name);
+});
+
+// Format serialized items for React component
+const companyItems: CompanyItem[] = sortedCompanies.map((c) => ({
+  id: c.id,
+  ticker: c.data.ticker,
+  name: c.data.name,
+  batch: c.data.batch,
+  tagline: c.data.tagline,
+  logo: c.data.logo,
+  bannerImage: c.data.bannerImage,
+  website: c.data.website,
+  careersUrl: c.data.careersUrl,
+  demoUrl: c.data.demoUrl,
+  stage: c.data.stage,
+  totalRaised: c.data.totalRaised,
+  sectors: c.data.sectors,
+  location: c.data.location,
+  founders: c.data.founders,
+  hiring: c.data.hiring,
+  openRolesCount: c.data.openRolesCount,
+  techStack: c.data.techStack,
+  badge: c.data.badge,
+}));
+---
+
+<Layout
+  title="Innovative YC Startups Directory"
+  description="Explore breakout Y Combinator startups across AI, Robotics, Hardware, DevTools, and B2B SaaS. Live funding milestones, tech stacks, and open roles."
+>
+  <!-- Neo-Brutal Pop Main Surface -->
+  <div class="bg-[#F4EFE6] text-black min-h-screen">
+    <!-- Hero Header (Frontier Neo-Brutal Pop) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-6 sm:pb-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 sm:gap-6 border-b-2 border-black pb-8">
+        <div>
+          <!-- Cadmium yellow pill -->
+          <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-black mb-3 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#FFE600] border-2 border-black shadow-[2px_2px_0px_#000]">
+            <span>🚀 Y COMBINATOR INNOVATION PIPELINE</span>
+            <span class="text-black font-black">·</span>
+            <span>ALL SECTORS</span>
+          </div>
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-black tracking-tight leading-tight break-words">
+            Innovative YC Startups
+          </h1>
+          <p class="text-sm sm:text-lg text-slate-800 font-medium mt-3 max-w-2xl leading-relaxed">
+            The comprehensive directory of high-growth Y Combinator companies driving breakthroughs across
+            <strong class="text-black font-black underline decoration-2 decoration-[#FFE600]">
+              Transformer ASICs, Autonomous Aviation, Humanoid Robotics, AI Search, and Agentic Software
+            </strong>.
+            Verified valuations, active technical stacks, and direct hiring channels.
+          </p>
+        </div>
+
+        <!-- Startup counter card: Mint green box with border-2 border-black shadow-[4px_4px_0px_#000] p-4 font-mono font-bold text-black -->
+        <div class="flex items-center gap-3.5 bg-[#34D399] border-2 border-black shadow-[4px_4px_0px_#000] p-3.5 sm:p-4 rounded-xl font-mono font-bold text-black w-full md:w-auto flex-shrink-0">
+          <span class="relative flex h-3.5 w-3.5 flex-shrink-0">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-40"></span>
+            <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-black"></span>
+          </span>
+          <div>
+            <div class="text-sm sm:text-base font-black text-black">{allCompanies.length} Verified YC Startups</div>
+            <div class="text-[10px] sm:text-[11px] text-black/80 font-bold uppercase tracking-wider">Active Innovation Pipeline</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Dashboard: KPIs, Search, Filter Tabs & Company Cards -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <CompaniesDashboard client:load initialCompanies={companyItems} />
+    </div>
+  </div>
+</Layout>
