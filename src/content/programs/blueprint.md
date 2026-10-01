@@ -7,10 +7,10 @@ logo: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=120&auto=f
 bannerImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&auto=format&fit=crop&q=80"
 website: "https://f.inc/blueprint"
 applyUrl: "https://f.inc/blueprint"
-closingDate: "2026-10-18T23:59:59Z"
+closingDate: "2026-09-14T23:59:59Z"
 isRolling: false
 durationWeeks: 12
-cohortStart: "November 2026"
+cohortStart: "October 2026"
 location:
   city: "San Francisco"
   state: "CA"
@@ -32,11 +32,15 @@ terms:
   stipend: "$10,000 living stipend + housing stipend"
   ipOwnership: "100% Founder-Owned (Zero university/studio IP claims)"
 hardwareFacilities:
-  - "In-House SMT Rapid PCB Assembly Line"
-  - "5-Axis CNC Desktop Mills & Lathes"
-  - "Formlabs SLA & Markforged Carbon Fiber 3D Printers"
-  - "Dedicated RF / Oscilloscope Hardware Test Bench"
-  - "Local NVIDIA H100 Cluster for Model Fine-Tuning"
+  - "Bambu Labs 3D Printers with unlimited filament"
+  - "Voltera Rapid PCB Printer"
+  - "Soldering stations & Digital Microscopes"
+  - "High-Precision CNCs & Drill Presses"
+  - "Industrial Laser cutters"
+  - "Air Tools Compressor"
+  - "Sheet Brakes & Bandsaws"
+  - "High-resolution Resin Printers"
+  - "Dedicated In-House Welding station"
 perks:
   - "$200K in Cloud & Compute credits (AWS, GCP, Lambda)"
   - "Direct introductions to Tier-1 Deep Tech VCs"
@@ -74,15 +78,17 @@ Founders, Inc. deploys a standard, founder-friendly instrument:
 
 ## Prototyping Facilities & Lab Access
 
-Blueprint founders receive 24/7 access to the Founders, Inc. hardware shop:
-1. **Electronics Fab**: Manual and automated Pick-and-Place machine, reflow ovens, solder fume extractors, Rigol digital storage oscilloscopes, and thermal imaging cameras.
-2. **Machining & Enclosures**: High-precision CNC milling units, laser cutters for acrylic/wood enclosures, and filament + resin 3D printing farms.
-3. **Compute Node**: Low-latency local connection to an internal multi-GPU rig for robotics imitation learning and vision-language-action (VLA) inference.
+Blueprint founders receive 24/7 access to the Founders, Inc. hardware shop at Fort Mason:
+1. **Rapid 3D Prototyping**: Bambu Labs printers with unlimited filament, plus high-precision resin printers.
+2. **Electronics & Circuit Fabrication**: Voltera rapid PCB printer, professional soldering benches, and digital inspection microscopes.
+3. **Machining & Metalworking**: CNC mills, drill presses, sheet brakes, bandsaws, air tool compressor systems, and a dedicated in-house welding station.
+4. **Enclosure Cutting**: Industrial laser cutters for rapid custom packaging, acrylic housings, and structural mechanical jigs.
 
 ---
 
 ## Application & Selection Process
 
-- **Rolling Interviews**: While the hard deadline is **October 18, 2026**, applications are reviewed weekly.
+- **Deadline Status**: Applications officially closed on **September 14, 2026**.
+- **Next Cohort**: Founders, Inc. periodically launches subsequent Blueprint batches and accepts rolling inquiries for general Fort Mason studio residency.
 - **Hardware Walkthrough**: Shortlisted teams are asked to conduct a 15-minute video demonstration of physical rigs, schematics, or simulation logs.
 - **Batch Size**: Strictly capped at 10-12 companies per cohort to maximize hands-on shop access and partner engagement.

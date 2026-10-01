@@ -18,7 +18,8 @@ const data = program.data;
 
 const now = new Date();
 const daysLeft = getRemainingDays(data.closingDate, now);
-const isUrgent = daysLeft <= 7 && !data.isRolling;
+const isUrgent = daysLeft <= 7 && daysLeft >= 0 && !data.isRolling;
+const isClosed = daysLeft < 0 && !data.isRolling;
 ---
 
 <Layout
@@ -27,7 +28,7 @@ const isUrgent = daysLeft <= 7 && !data.isRolling;
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     <!-- Breadcrumb -->
-    <div class="mb-7">
+    <div class="mb-7 flex items-center justify-between">
       <a
         href="/"
         class="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-indigo-400 transition-colors group"
@@ -35,7 +36,26 @@ const isUrgent = daysLeft <= 7 && !data.isRolling;
         <span class="transform group-hover:-translate-x-1 transition-transform">←</span>
         <span>Back to Live Radar</span>
       </a>
+
+      {isClosed && (
+        <span class="text-xs font-mono px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/25 flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+          <span>Archived Cohort · Applications Closed</span>
+        </span>
+      )}
     </div>
+
+    {isClosed && (
+      <div class="mb-6 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-200 flex items-start gap-3 text-sm font-mono">
+        <span class="text-lg">⚠️</span>
+        <div class="flex-1">
+          <strong class="font-bold text-white">Notice: Applications for this cohort closed on {new Date(data.closingDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.</strong>
+          <p class="text-xs text-rose-300 mt-1">
+            This program has been automatically excluded from the SiliconBatch live radar. This page is preserved for historical terms, hardware equipment specs, and founder reference.
+          </p>
+        </div>
+      </div>
+    )}
 
     <!-- Header Hero Card (Frontier Foundry Glass) -->
     <div class="foundry-card p-6 sm:p-10 mb-8 relative overflow-hidden">
@@ -91,15 +111,22 @@ const isUrgent = daysLeft <= 7 && !data.isRolling;
           />
 
           <!-- Action Buttons -->
-          <a
-            href={data.applyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="w-full py-3.5 px-5 bg-indigo-600 hover:bg-indigo-500 text-white font-mono font-bold text-center rounded-xl transition-all shadow-glow flex items-center justify-center gap-2 group"
-          >
-            <span>Apply for Batch</span>
-            <span class="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
-          </a>
+          {isClosed ? (
+            <div class="w-full py-3.5 px-5 bg-rose-500/10 border border-rose-500/30 text-rose-300 font-mono font-bold text-center rounded-xl flex items-center justify-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+              <span>Applications Closed</span>
+            </div>
+          ) : (
+            <a
+              href={data.applyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full py-3.5 px-5 bg-indigo-600 hover:bg-indigo-500 text-white font-mono font-bold text-center rounded-xl transition-all shadow-glow flex items-center justify-center gap-2 group"
+            >
+              <span>Apply for Batch</span>
+              <span class="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
+            </a>
+          )}
 
           <a
             href={data.website}
@@ -107,7 +134,7 @@ const isUrgent = daysLeft <= 7 && !data.isRolling;
             rel="noopener noreferrer"
             class="w-full py-2.5 px-4 bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 text-slate-300 hover:text-white font-mono text-xs font-semibold text-center rounded-xl transition-all flex items-center justify-center gap-1.5"
           >
-            <span>Visit Official Website</span>
+            <span>{isClosed ? 'Visit Founders Website / Waitlist' : 'Visit Official Website'}</span>
             <span class="text-[11px] text-slate-500">↗</span>
           </a>
         </div>
