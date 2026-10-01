@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import LiveTicker from '../components/LiveTicker';
+import RadarDashboard from '../components/RadarDashboard';
+import { isProgramOpen, getRemainingDays } from '../utils/programs';
+
+const allPrograms = await getCollection('programs');
+
+// CRITICAL USER REQUIREMENT: Filter ONLY programs that are still open for applications!
+const now = new Date();
+const openPrograms = allPrograms
+  .filter((p) => isProgramOpen(p, now))
+  .sort((a, b) => {
+    // Sort by earliest closing deadline first (rolling at the end)
+    if (a.data.isRolling && !b.data.isRolling) return 1;
+    if (!a.data.isRolling && b.data.isRolling) return -1;
+    return new Date(a.data.closingDate).getTime() - new Date(b.data.closingDate).getTime();
+  });
+
+// Format serialized items for React components
+const programItems = openPrograms.map((p) => {
+  const daysLeft = getRemainingDays(p.data.closingDate, now);
+  return {
+    id: p.id,
+    ticker: p.data.ticker,
+    name: p.data.name,
+    organizer: p.data.organizer,
+    tagline: p.data.tagline,
+    logo: p.data.logo,
+    bannerImage: p.data.bannerImage,
+    website: p.data.website,
+    applyUrl: p.data.applyUrl,
+    closingDate: p.data.closingDate,
+    isRolling: p.data.isRolling,
+    durationWeeks: p.data.durationWeeks,
+    cohortStart: p.data.cohortStart,
+    location: p.data.location,
+    sectors: p.data.sectors,
+    stage: p.data.stage,
+    terms: p.data.terms,
+    hardwareFacilities: p.data.hardwareFacilities,
+    perks: p.data.perks,
+    notableAlumni: p.data.notableAlumni,
+    badge: p.data.badge,
+    daysLeft,
+    isUrgent: daysLeft <= 7 && !p.data.isRolling,
+  };
+});
+
+// Ticker items for continuous marquee
+const tickerItems = programItems.map((p) => ({
+  id: p.id,
+  ticker: p.ticker,
+  name: p.name,
+  check: p.terms.checkDisplay,
+  daysLeft: p.daysLeft,
+  isRolling: p.isRolling,
+  city: p.location.city,
+  country: p.location.country,
+}));
+---
+
+<Layout title="Radar for Physical AI & Hardware Accelerators">
+  <!-- Live Stock Ticker Bar -->
+  <LiveTicker client:load items={tickerItems} />
+
+  <!-- Hero Header -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#1b2540] pb-6">
+      <div>
+        <div class="flex items-center gap-2 text-xs font-mono text-[#06b6d4] font-semibold mb-2">
+          <span>HARDWARE ACCELERATOR RADAR</span>
+          <span>·</span>
+          <span>REAL-TIME PIPELINE</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-black text-[#e6ecf4] tracking-tight">
+          Physical AI & Electronics Accelerators
+        </h1>
+        <p class="text-sm text-[#b4c0d4] mt-2 max-w-2xl leading-relaxed">
+          Tracking every active incubator and accelerator program currently accepting applications for
+          <strong class="text-white font-semibold"> Physical AI, Robotics, Custom Silicon, and Advanced Electronics</strong>.
+          Verified closing dates, in-house hardware lab specs, and deal terms.
+        </p>
+      </div>
+
+      <!-- Quick stats badge -->
+      <div class="flex items-center gap-3 bg-[#0c1018] border border-[#1b2540] px-4 py-2.5 rounded-xl font-mono text-xs">
+        <span class="w-2.5 h-2.5 rounded-full bg-[#22c55e] animate-pulse"></span>
+        <div>
+          <div class="text-[#e6ecf4] font-bold">{openPrograms.length} Active Batches</div>
+          <div class="text-[10px] text-[#556580]">Auto-filters past deadlines</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Dashboard: KPIs, Search, Filter Tabs & Program Cards -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <RadarDashboard client:load initialPrograms={programItems} />
+  </div>
+</Layout>

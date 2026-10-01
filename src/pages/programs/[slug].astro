@@ -1,0 +1,295 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+import DeadlineCountdown from '../../components/DeadlineCountdown';
+import { getRemainingDays } from '../../utils/programs';
+
+export async function getStaticPaths() {
+  const programs = await getCollection('programs');
+  return programs.map((program) => ({
+    params: { slug: program.id },
+    props: { program },
+  }));
+}
+
+const { program } = Astro.props;
+const { Content } = await render(program);
+const data = program.data;
+
+const now = new Date();
+const daysLeft = getRemainingDays(data.closingDate, now);
+const isUrgent = daysLeft <= 7 && !data.isRolling;
+---
+
+<Layout
+  title={`${data.name} Experience & Terms`}
+  description={`${data.name} by ${data.organizer}: Deal terms, hardware prototyping facilities, and application guide.`}
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Breadcrumb -->
+    <div class="mb-6">
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 text-xs font-mono text-[#556580] hover:text-[#3b82f6] transition-colors"
+      >
+        <span>←</span>
+        <span>Back to Live Radar</span>
+      </a>
+    </div>
+
+    <!-- Header Hero Card -->
+    <div class="bg-[#0c1018] border border-[#1b2540] rounded-2xl p-6 sm:p-8 mb-8 relative overflow-hidden">
+      <!-- Background glow -->
+      <div class="absolute -right-20 -top-20 w-80 h-80 bg-[#3b82f6]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
+        <!-- Program Identity -->
+        <div class="flex-1">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="font-mono text-xs font-bold px-2.5 py-1 rounded bg-[#131a28] text-[#3b82f6] border border-[#1b2540]">
+              ${data.ticker}
+            </span>
+            <span class="font-mono text-xs text-[#06b6d4]">
+              📍 {data.location.city}, {data.location.country}
+            </span>
+            {data.badge && (
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#a78bfa]/20 text-[#a78bfa] border border-[#a78bfa]/30 font-bold">
+                {data.badge}
+              </span>
+            )}
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl font-black text-[#e6ecf4] tracking-tight">
+            {data.name}
+          </h1>
+          <div class="text-sm text-[#3b82f6] font-semibold mt-1">
+            Organized by {data.organizer}
+          </div>
+          <p class="text-sm text-[#b4c0d4] mt-3 max-w-2xl leading-relaxed">
+            {data.tagline}
+          </p>
+
+          <!-- Sector tags -->
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            {data.sectors.map((sector) => (
+              <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-[#131a28] text-[#b4c0d4] border border-[#1b2540]">
+                {sector}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Closing Countdown & CTA Block -->
+        <div class="w-full lg:w-80 flex flex-col gap-3">
+          <!-- Realtime countdown island -->
+          <DeadlineCountdown
+            client:load
+            closingDate={data.closingDate}
+            isRolling={data.isRolling}
+            size="lg"
+            showDetails={true}
+          />
+
+          <!-- Action Buttons -->
+          <a
+            href={data.applyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full py-3 px-4 bg-[#3b82f6] hover:bg-[#2563eb] text-white font-mono font-bold text-center rounded-xl transition-all shadow-lg shadow-[#3b82f6]/20 flex items-center justify-center gap-2"
+          >
+            <span>Apply for Batch</span>
+            <span>↗</span>
+          </a>
+
+          <a
+            href={data.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full py-2.5 px-4 bg-[#131a28] hover:bg-[#182238] border border-[#1b2540] text-[#b4c0d4] hover:text-white font-mono text-xs font-semibold text-center rounded-xl transition-colors flex items-center justify-center gap-1.5"
+          >
+            <span>Visit Official Website</span>
+            <span class="text-[11px] text-[#556580]">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats Grid (Stockdash Bento) -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
+      <div class="bg-[#0c1018] border border-[#1b2540] rounded-xl p-3.5 text-center">
+        <div class="text-[10px] uppercase font-mono text-[#556580]">Check Size</div>
+        <div class="text-lg font-black text-[#fbbf24] font-mono mt-0.5">{data.terms.checkDisplay}</div>
+        <div class="text-[10px] text-[#556580] mt-0.5">{data.terms.instrument}</div>
+      </div>
+
+      <div class="bg-[#0c1018] border border-[#1b2540] rounded-xl p-3.5 text-center">
+        <div class="text-[10px] uppercase font-mono text-[#556580]">Equity Taken</div>
+        <div class="text-lg font-black text-[#e6ecf4] font-mono mt-0.5">
+          {data.terms.equityPercent !== null ? `${data.terms.equityPercent}%` : '0%'}
+        </div>
+        <div class="text-[10px] text-[#556580] mt-0.5">
+          {data.terms.equityPercent === 0 ? 'Non-Dilutive' : 'Standard'}
+        </div>
+      </div>
+
+      <div class="bg-[#0c1018] border border-[#1b2540] rounded-xl p-3.5 text-center">
+        <div class="text-[10px] uppercase font-mono text-[#556580]">Valuation Cap</div>
+        <div class="text-xs font-bold text-[#b4c0d4] font-mono mt-1.5 truncate">
+          {data.terms.valuationCapDisplay}
+        </div>
+        <div class="text-[10px] text-[#556580] mt-0.5">Post-Money</div>
+      </div>
+
+      <div class="bg-[#0c1018] border border-[#1b2540] rounded-xl p-3.5 text-center">
+        <div class="text-[10px] uppercase font-mono text-[#556580]">Duration</div>
+        <div class="text-lg font-black text-[#06b6d4] font-mono mt-0.5">{data.durationWeeks} Wks</div>
+        <div class="text-[10px] text-[#556580] mt-0.5">{data.cohortStart}</div>
+      </div>
+
+      <div class="bg-[#0c1018] border border-[#1b2540] rounded-xl p-3.5 text-center">
+        <div class="text-[10px] uppercase font-mono text-[#556580]">Attendance</div>
+        <div class="text-sm font-bold text-[#e6ecf4] font-mono mt-1">
+          {data.location.inPerson ? 'In-Person' : 'Hybrid'}
+        </div>
+        <div class="text-[10px] text-[#06b6d4] mt-0.5">{data.location.city}</div>
+      </div>
+
+      <div class="bg-[#0c1018] border border-[#1b2540] rounded-xl p-3.5 text-center">
+        <div class="text-[10px] uppercase font-mono text-[#556580]">IP Ownership</div>
+        <div class="text-xs font-bold text-[#22c55e] font-mono mt-1.5">100% Retained</div>
+        <div class="text-[10px] text-[#556580] mt-0.5">Founder Owned</div>
+      </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+      <!-- Left Column: In-depth narrative & Overview -->
+      <div class="lg:col-span-2 space-y-8">
+        <!-- Markdown Body -->
+        <div class="bg-[#0c1018] border border-[#1b2540] rounded-2xl p-6 sm:p-8">
+          <div class="prose prose-invert max-w-none prose-headings:font-black prose-headings:text-[#e6ecf4] prose-p:text-[#b4c0d4] prose-li:text-[#b4c0d4] prose-strong:text-white prose-a:text-[#3b82f6] prose-hr:border-[#1b2540]">
+            <Content />
+          </div>
+        </div>
+
+        <!-- Hardware & Lab Facilities Detail -->
+        <div class="bg-[#0c1018] border border-[#1b2540] rounded-2xl p-6 sm:p-8">
+          <h2 class="text-xl font-black text-[#e6ecf4] flex items-center gap-2 mb-4">
+            <span>🛠️</span>
+            <span>Hardware Labs & Prototyping Infrastructure</span>
+          </h2>
+          <p class="text-sm text-[#b4c0d4] mb-4">
+            Founders accepted into {data.name} receive direct access to internal fabrication tooling and testing apparatus:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {data.hardwareFacilities.map((fac) => (
+              <div class="bg-[#131a28] border border-[#1b2540] rounded-xl p-3.5 flex items-start gap-3">
+                <span class="text-[#3b82f6] text-lg font-bold">⚡</span>
+                <div>
+                  <div class="text-xs font-bold text-[#e6ecf4]">{fac}</div>
+                  <div class="text-[10px] text-[#556580] mt-0.5">24/7 cohort bench access</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Terms, Perks & Selection Sidebar -->
+      <div class="space-y-6">
+        <!-- Terms and Conditions Card -->
+        <div class="bg-[#0c1018] border border-[#1b2540] rounded-2xl p-6">
+          <h3 class="text-base font-bold text-[#e6ecf4] flex items-center gap-2 mb-4 font-mono">
+            <span>📜</span>
+            <span>Terms & Conditions Breakdown</span>
+          </h3>
+          <dl class="space-y-3.5 text-xs font-mono">
+            <div class="flex justify-between items-center py-1.5 border-b border-[#1b2540]">
+              <dt class="text-[#556580]">Legal Instrument</dt>
+              <dd class="text-[#e6ecf4] font-bold">{data.terms.instrument}</dd>
+            </div>
+            <div class="flex justify-between items-center py-1.5 border-b border-[#1b2540]">
+              <dt class="text-[#556580]">Check Amount</dt>
+              <dd class="text-[#fbbf24] font-bold">{data.terms.checkDisplay}</dd>
+            </div>
+            <div class="flex justify-between items-center py-1.5 border-b border-[#1b2540]">
+              <dt class="text-[#556580]">Equity Dilution</dt>
+              <dd class="text-[#e6ecf4] font-bold">
+                {data.terms.equityPercent !== null ? `${data.terms.equityPercent}%` : '0% (Non-dilutive)'}
+              </dd>
+            </div>
+            <div class="flex justify-between items-center py-1.5 border-b border-[#1b2540]">
+              <dt class="text-[#556580]">Valuation Cap</dt>
+              <dd class="text-[#b4c0d4] font-bold">{data.terms.valuationCapDisplay}</dd>
+            </div>
+            <div class="flex justify-between items-center py-1.5 border-b border-[#1b2540]">
+              <dt class="text-[#556580]">IP Assignment</dt>
+              <dd class="text-[#22c55e] font-bold">{data.terms.ipOwnership}</dd>
+            </div>
+            {data.terms.stipend && (
+              <div class="py-1.5 border-b border-[#1b2540]">
+                <dt class="text-[#556580] mb-1">Stipend & Housing</dt>
+                <dd class="text-[#b4c0d4]">{data.terms.stipend}</dd>
+              </div>
+            )}
+            <div class="py-1.5">
+              <dt class="text-[#556580] mb-1">Residency Requirement</dt>
+              <dd class="text-[#b4c0d4]">{data.location.residencyDetails}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Application Tips & Cheat Sheet -->
+        {data.applicationTips.length > 0 && (
+          <div class="bg-[#0c1018] border border-[#1b2540] rounded-2xl p-6">
+            <h3 class="text-base font-bold text-[#e6ecf4] flex items-center gap-2 mb-3 font-mono">
+              <span>🎯</span>
+              <span>Application Cheat Sheet</span>
+            </h3>
+            <ul class="space-y-2.5 text-xs text-[#b4c0d4]">
+              {data.applicationTips.map((tip) => (
+                <li class="flex items-start gap-2">
+                  <span class="text-[#06b6d4] font-bold">✓</span>
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Perks & Network -->
+        <div class="bg-[#0c1018] border border-[#1b2540] rounded-2xl p-6">
+          <h3 class="text-base font-bold text-[#e6ecf4] flex items-center gap-2 mb-3 font-mono">
+            <span>🎁</span>
+            <span>Perks & Credits</span>
+          </h3>
+          <ul class="space-y-2 text-xs text-[#b4c0d4]">
+            {data.perks.map((perk) => (
+              <li class="flex items-start gap-2">
+                <span class="text-[#fbbf24]">✦</span>
+                <span>{perk}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Notable Alumni -->
+        {data.notableAlumni.length > 0 && (
+          <div class="bg-[#0c1018] border border-[#1b2540] rounded-2xl p-6">
+            <h3 class="text-base font-bold text-[#e6ecf4] flex items-center gap-2 mb-3 font-mono">
+              <span>🏆</span>
+              <span>Notable Alumni</span>
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {data.notableAlumni.map((alumnus) => (
+                <span class="text-xs font-mono px-2.5 py-1 rounded bg-[#131a28] text-[#e6ecf4] border border-[#1b2540]">
+                  {alumnus}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</Layout>
