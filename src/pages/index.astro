@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import LiveTicker from '../components/LiveTicker';
 import RadarDashboard from '../components/RadarDashboard';
 import { isProgramOpen, getRemainingDays } from '../utils/programs';
 
@@ -47,24 +46,9 @@ const programItems = openPrograms.map((p) => {
     isUrgent: daysLeft <= 7 && !p.data.isRolling,
   };
 });
-
-// Ticker items for continuous marquee
-const tickerItems = programItems.map((p) => ({
-  id: p.id,
-  ticker: p.ticker,
-  name: p.name,
-  check: p.terms.checkDisplay,
-  daysLeft: p.daysLeft,
-  isRolling: p.isRolling,
-  city: p.location.city,
-  country: p.location.country,
-}));
 ---
 
 <Layout title="Radar for Physical AI & Hardware Accelerators">
-  <!-- Live Stock Ticker Bar -->
-  <LiveTicker client:load items={tickerItems} />
-
   <!-- Neo-Brutal Pop Main Surface -->
   <div class="bg-[#F4EFE6] text-black min-h-screen">
     <!-- Hero Header (Frontier Neo-Brutal Pop) -->
