@@ -2,7 +2,7 @@
 
 > **The Real-Time Radar for Physical AI, Robotics, Custom Silicon, and Advanced Electronics Accelerators.**
 
-SiliconBatch is a high-density, real-time web application built with **Astro 5**, **React Islands**, and **Tailwind CSS**. It is inspired by the crisp, information-dense aesthetic of **Stockdash** and financial terminals.
+SiliconBatch is a high-density, real-time radar for Physical AI, Robotics, Custom Silicon, and Advanced Electronics Accelerators. It is inspired by the crisp, information-dense aesthetic of financial terminals and Stockdash, built with interactive React Islands and Tailwind CSS.
 
 ---
 
@@ -23,10 +23,10 @@ SiliconBatch is a high-density, real-time web application built with **Astro 5**
 
 ## 🛠️ Architecture & Tech Stack
 
-* **Core Engine**: [Astro 5](https://astro.build) (Content Layer + Static Site Generation)
-* **Interactive Islands**: [React 19](https://react.dev) for real-time countdown clocks, search filters, and marquee tickers
-* **Styling**: [Tailwind CSS](https://tailwindcss.com) configured with the signature Stockdash dark palette (`#06090f`, `#0c1018`, `#131a28`, `#1b2540`)
-* **Type Safety & Data Schema**: Astro Content Collections powered by strict [Zod](https://zod.dev) schema validation (`src/content.config.ts`)
+* **Core Engine**: SiliconBatch High-Speed Static Engine (Zero-JS baseline for <1s load times)
+* **Interactive Islands**: React 19 for real-time countdown clocks, search filters, and marquee tickers
+* **Styling**: Tailwind CSS configured with the signature Stockdash dark palette (`#06090f`, `#0c1018`, `#131a28`, `#1b2540`)
+* **Type Safety & Data Schema**: SiliconBatch Content Collections powered by strict Zod schema validation (`src/content.config.ts`)
 
 ---
 
