@@ -148,7 +148,7 @@ async function run() {
   const seenSlugs = new Set(flagships.map(c => c.slug));
 
   for (const c of all) {
-    if (selected.length >= 46) break; // Ensure exactly 50 total companies in directory
+    if (selected.length >= 96) break; // Ensure exactly 100 total companies in directory
     if (!seenSlugs.has(c.slug)) {
       seenSlugs.add(c.slug);
       selected.push(c);
@@ -163,7 +163,7 @@ async function run() {
   // etched.md (S24), decagon.md (W24), cartesia.md (S24), distyl-ai.md (W24), k-scale-labs.md (W24)
   const curatedFlagships = new Set(['etched', 'decagon', 'cartesia', 'distyl-ai', 'k-scale-labs']);
 
-  // Clear out old non-last-3-batches files (e.g. baseten, openmeter, pyka, cradle-bio, exa-ai, monad-labs)
+  // Clear out old non-last-3-batches files
   const existingFiles = fs.readdirSync(companiesDir);
   for (const f of existingFiles) {
     const slug = f.replace(/\.md$/, '');
@@ -176,7 +176,7 @@ async function run() {
   let countAdded = 0;
   for (const c of selected) {
     if (curatedFlagships.has(c.slug)) continue;
-    if (fs.readdirSync(companiesDir).length >= 50) break;
+    if (fs.readdirSync(companiesDir).length >= 100) break;
 
     const ticker = generateTicker(c.name);
     const location = parseLocation(c.all_locations);
