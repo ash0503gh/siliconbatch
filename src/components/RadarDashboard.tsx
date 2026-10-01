@@ -43,6 +43,7 @@ export interface ProgramItem {
 
 export default function RadarDashboard({ initialPrograms }: { initialPrograms: ProgramItem[] }) {
   const [search, setSearch] = useState('');
+  const [selectedRegion, setSelectedRegion] = useState<'All' | 'Europe' | 'North America'>('All');
   const [selectedSector, setSelectedSector] = useState<string>('All');
   const [selectedFormat, setSelectedFormat] = useState<'All' | 'In-Person' | 'Remote'>('All');
   const [selectedTerm, setSelectedTerm] = useState<'All' | 'SAFE' | 'Equity' | 'Grant'>('All');
@@ -60,6 +61,16 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
   // Filter programs based on user controls
   const filtered = useMemo(() => {
     return initialPrograms.filter((p) => {
+      // Region filter
+      if (selectedRegion === 'Europe') {
+        const euCountries = ['Germany', 'France', 'Switzerland', 'UK', 'United Kingdom', 'Sweden', 'Netherlands', 'Estonia'];
+        if (!euCountries.includes(p.location.country)) return false;
+      }
+      if (selectedRegion === 'North America') {
+        const naCountries = ['USA', 'United States', 'Canada'];
+        if (!naCountries.includes(p.location.country)) return false;
+      }
+
       // Sector filter
       if (selectedSector !== 'All' && !p.sectors.includes(selectedSector)) {
         return false;
@@ -223,40 +234,62 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
           })}
         </div>
 
-        {/* Sub-Filters: Residency & Terms */}
+        {/* Sub-Filters: Region, Residency & Terms */}
         <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[#1b2540]/60 text-xs">
-          <div className="flex items-center gap-2">
-            <span className="text-[#556580] font-mono">Residency:</span>
-            {(['All', 'In-Person', 'Remote'] as const).map((fmt) => (
-              <button
-                key={fmt}
-                onClick={() => setSelectedFormat(fmt)}
-                className={`px-2.5 py-1 rounded text-xs font-mono transition-colors ${
-                  selectedFormat === fmt
-                    ? 'bg-[#06b6d4]/20 text-[#06b6d4] border border-[#06b6d4]/40 font-bold'
-                    : 'text-[#b4c0d4] hover:text-white'
-                }`}
-              >
-                {fmt}
-              </button>
-            ))}
-          </div>
+          <div className="flex flex-wrap items-center gap-4">
+            {/* Region Filter */}
+            <div className="flex items-center gap-1.5">
+              <span className="text-[#556580] font-mono">Region:</span>
+              {(['All', 'Europe', 'North America'] as const).map((reg) => (
+                <button
+                  key={reg}
+                  onClick={() => setSelectedRegion(reg)}
+                  className={`px-2.5 py-1 rounded text-xs font-mono transition-colors ${
+                    selectedRegion === reg
+                      ? 'bg-[#3b82f6]/20 text-[#3b82f6] border border-[#3b82f6]/40 font-bold'
+                      : 'text-[#b4c0d4] hover:text-white'
+                  }`}
+                >
+                  {reg === 'Europe' ? '🇪🇺 Europe' : reg === 'North America' ? '🇺🇸 North America' : '🌐 All'}
+                </button>
+              ))}
+            </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-[#556580] font-mono">Instrument:</span>
-            {(['All', 'SAFE', 'Equity', 'Grant'] as const).map((term) => (
-              <button
-                key={term}
-                onClick={() => setSelectedTerm(term)}
-                className={`px-2.5 py-1 rounded text-xs font-mono transition-colors ${
-                  selectedTerm === term
-                    ? 'bg-[#fbbf24]/20 text-[#fbbf24] border border-[#fbbf24]/40 font-bold'
-                    : 'text-[#b4c0d4] hover:text-white'
-                }`}
-              >
-                {term}
-              </button>
-            ))}
+            {/* Residency Filter */}
+            <div className="flex items-center gap-1.5">
+              <span className="text-[#556580] font-mono">Residency:</span>
+              {(['All', 'In-Person', 'Remote'] as const).map((fmt) => (
+                <button
+                  key={fmt}
+                  onClick={() => setSelectedFormat(fmt)}
+                  className={`px-2.5 py-1 rounded text-xs font-mono transition-colors ${
+                    selectedFormat === fmt
+                      ? 'bg-[#06b6d4]/20 text-[#06b6d4] border border-[#06b6d4]/40 font-bold'
+                      : 'text-[#b4c0d4] hover:text-white'
+                  }`}
+                >
+                  {fmt}
+                </button>
+              ))}
+            </div>
+
+            {/* Instrument Filter */}
+            <div className="flex items-center gap-1.5">
+              <span className="text-[#556580] font-mono">Instrument:</span>
+              {(['All', 'SAFE', 'Equity', 'Grant'] as const).map((term) => (
+                <button
+                  key={term}
+                  onClick={() => setSelectedTerm(term)}
+                  className={`px-2.5 py-1 rounded text-xs font-mono transition-colors ${
+                    selectedTerm === term
+                      ? 'bg-[#fbbf24]/20 text-[#fbbf24] border border-[#fbbf24]/40 font-bold'
+                      : 'text-[#b4c0d4] hover:text-white'
+                  }`}
+                >
+                  {term}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="text-[#556580] font-mono text-[11px]">
@@ -272,11 +305,12 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
           <div className="text-4xl mb-3">📡</div>
           <h3 className="text-lg font-bold text-[#e6ecf4] mb-1">No Matching Open Programs</h3>
           <p className="text-sm text-[#556580] max-w-md mx-auto mb-4">
-            Try adjusting your search terms or clearing the sector and terms filters.
+            Try adjusting your search terms or clearing the sector, region, and terms filters.
           </p>
           <button
             onClick={() => {
               setSearch('');
+              setSelectedRegion('All');
               setSelectedSector('All');
               setSelectedFormat('All');
               setSelectedTerm('All');
