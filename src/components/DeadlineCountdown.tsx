@@ -131,30 +131,30 @@ export default function DeadlineCountdown({
         </span>
       </div>
 
-      <div className="grid grid-cols-4 gap-2 text-center my-1">
-        <div className="bg-[#F7F2E8] rounded-xl p-2.5 sm:p-3 border-2 border-black shadow-[2px_2px_0px_#000]">
-          <div className="text-2xl sm:text-4xl font-black tracking-tight text-black tabular-nums">
+      <div className="grid grid-cols-4 gap-1.5 sm:gap-2 text-center my-1">
+        <div className="bg-[#F7F2E8] rounded-xl p-2 sm:p-3 border-2 border-black shadow-[2px_2px_0px_#000]">
+          <div className="text-xl sm:text-3xl md:text-4xl font-black tracking-tight text-black tabular-nums">
             {timeLeft.days}
           </div>
-          <div className="text-[10px] sm:text-[11px] uppercase tracking-widest font-black text-slate-800 mt-1">Days</div>
+          <div className="text-[9px] sm:text-[11px] uppercase tracking-widest font-black text-slate-800 mt-0.5 sm:mt-1">Days</div>
         </div>
-        <div className="bg-[#F7F2E8] rounded-xl p-2.5 sm:p-3 border-2 border-black shadow-[2px_2px_0px_#000]">
-          <div className="text-2xl sm:text-4xl font-black tracking-tight text-black tabular-nums">
+        <div className="bg-[#F7F2E8] rounded-xl p-2 sm:p-3 border-2 border-black shadow-[2px_2px_0px_#000]">
+          <div className="text-xl sm:text-3xl md:text-4xl font-black tracking-tight text-black tabular-nums">
             {String(timeLeft.hours).padStart(2, '0')}
           </div>
-          <div className="text-[10px] sm:text-[11px] uppercase tracking-widest font-black text-slate-800 mt-1">Hours</div>
+          <div className="text-[9px] sm:text-[11px] uppercase tracking-widest font-black text-slate-800 mt-0.5 sm:mt-1">Hours</div>
         </div>
-        <div className="bg-[#F7F2E8] rounded-xl p-2.5 sm:p-3 border-2 border-black shadow-[2px_2px_0px_#000]">
-          <div className="text-2xl sm:text-4xl font-black tracking-tight text-black tabular-nums">
+        <div className="bg-[#F7F2E8] rounded-xl p-2 sm:p-3 border-2 border-black shadow-[2px_2px_0px_#000]">
+          <div className="text-xl sm:text-3xl md:text-4xl font-black tracking-tight text-black tabular-nums">
             {String(timeLeft.minutes).padStart(2, '0')}
           </div>
-          <div className="text-[10px] sm:text-[11px] uppercase tracking-widest font-black text-slate-800 mt-1">Mins</div>
+          <div className="text-[9px] sm:text-[11px] uppercase tracking-widest font-black text-slate-800 mt-0.5 sm:mt-1">Mins</div>
         </div>
-        <div className="bg-[#F7F2E8] rounded-xl p-2.5 sm:p-3 border-2 border-black shadow-[2px_2px_0px_#000]">
-          <div className="text-2xl sm:text-4xl font-black tracking-tight text-black tabular-nums">
+        <div className="bg-[#F7F2E8] rounded-xl p-2 sm:p-3 border-2 border-black shadow-[2px_2px_0px_#000]">
+          <div className="text-xl sm:text-3xl md:text-4xl font-black tracking-tight text-black tabular-nums">
             {String(timeLeft.seconds).padStart(2, '0')}
           </div>
-          <div className="text-[10px] sm:text-[11px] uppercase tracking-widest font-black text-slate-800 mt-1">Secs</div>
+          <div className="text-[9px] sm:text-[11px] uppercase tracking-widest font-black text-slate-800 mt-0.5 sm:mt-1">Secs</div>
         </div>
       </div>
 

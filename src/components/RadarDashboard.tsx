@@ -159,70 +159,70 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
   return (
     <div className="w-full text-black">
       {/* ── KPI Summary Cards (4 pop color-blocked cards: Yellow, Blue, Mint, Coral) ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
         {/* Card 1: Yellow */}
-        <div className="bg-[#FFE600] border-2 border-black shadow-[4px_4px_0px_#000] p-4 rounded-xl text-black flex flex-col justify-between hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] transition-all">
-          <div className="flex items-center justify-between text-xs font-mono font-bold mb-2">
-            <span className="tracking-wider uppercase text-[10px]">Verified Open Batches</span>
-            <span className="flex h-2.5 w-2.5 relative">
+        <div className="bg-[#FFE600] border-2 border-black shadow-[3px_3px_0px_#000] sm:shadow-[4px_4px_0px_#000] p-3 sm:p-4 rounded-xl text-black flex flex-col justify-between hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] transition-all">
+          <div className="flex items-center justify-between text-xs font-mono font-bold mb-1.5">
+            <span className="tracking-wider uppercase text-[9px] sm:text-[10px]">Open Batches</span>
+            <span className="flex h-2.5 w-2.5 relative flex-shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-40"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-black"></span>
             </span>
           </div>
-          <div className="text-3xl sm:text-4xl font-black font-mono tracking-tight">{initialPrograms.length}</div>
-          <div className="text-xs font-mono font-bold mt-2 text-black/90">⚡ Accepting Applications</div>
+          <div className="text-2xl sm:text-4xl font-black font-mono tracking-tight">{initialPrograms.length}</div>
+          <div className="text-[10px] sm:text-xs font-mono font-bold mt-1 text-black/90 truncate">⚡ Accepting Apps</div>
         </div>
 
         {/* Card 2: Cobalt Blue */}
-        <div className="bg-[#3B82F6] border-2 border-black shadow-[4px_4px_0px_#000] p-4 rounded-xl text-white flex flex-col justify-between hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] transition-all">
-          <div className="flex items-center justify-between text-xs font-mono font-bold mb-2 text-white">
-            <span className="tracking-wider uppercase text-[10px]">Deployable Capital</span>
-            <span className="text-sm">💰</span>
+        <div className="bg-[#3B82F6] border-2 border-black shadow-[3px_3px_0px_#000] sm:shadow-[4px_4px_0px_#000] p-3 sm:p-4 rounded-xl text-white flex flex-col justify-between hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] transition-all">
+          <div className="flex items-center justify-between text-xs font-mono font-bold mb-1.5 text-white">
+            <span className="tracking-wider uppercase text-[9px] sm:text-[10px]">Funding Pipeline</span>
+            <span className="text-xs sm:text-sm">💰</span>
           </div>
-          <div className="text-3xl sm:text-4xl font-black font-mono tracking-tight text-white">{totalFundingPipeline}</div>
-          <div className="text-xs font-mono font-bold mt-2 text-white/90">Direct Upfront Checks</div>
+          <div className="text-2xl sm:text-4xl font-black font-mono tracking-tight text-white">{totalFundingPipeline}</div>
+          <div className="text-[10px] sm:text-xs font-mono font-bold mt-1 text-white/90 truncate">Direct Checks</div>
         </div>
 
         {/* Card 3: Mint Green */}
-        <div className="bg-[#34D399] border-2 border-black shadow-[4px_4px_0px_#000] p-4 rounded-xl text-black flex flex-col justify-between hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] transition-all">
-          <div className="flex items-center justify-between text-xs font-mono font-bold mb-2">
-            <span className="tracking-wider uppercase text-[10px]">Next Cohort Deadline</span>
-            <span className="text-sm">⏳</span>
+        <div className="bg-[#34D399] border-2 border-black shadow-[3px_3px_0px_#000] sm:shadow-[4px_4px_0px_#000] p-3 sm:p-4 rounded-xl text-black flex flex-col justify-between hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] transition-all">
+          <div className="flex items-center justify-between text-xs font-mono font-bold mb-1.5">
+            <span className="tracking-wider uppercase text-[9px] sm:text-[10px]">Next Deadline</span>
+            <span className="text-xs sm:text-sm">⏳</span>
           </div>
-          <div className="text-2xl sm:text-3xl font-black font-mono tracking-tight">{shortestDeadline}</div>
-          <div className="text-xs font-mono font-bold mt-2 text-black/90">Application Closing Soon</div>
+          <div className="text-xl sm:text-3xl font-black font-mono tracking-tight truncate">{shortestDeadline}</div>
+          <div className="text-[10px] sm:text-xs font-mono font-bold mt-1 text-black/90 truncate">Closing Soon</div>
         </div>
 
         {/* Card 4: Coral Pink */}
-        <div className="bg-[#FF5E7E] border-2 border-black shadow-[4px_4px_0px_#000] p-4 rounded-xl text-black flex flex-col justify-between hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] transition-all">
-          <div className="flex items-center justify-between text-xs font-mono font-bold mb-2">
-            <span className="tracking-wider uppercase text-[10px]">Hardware Focus</span>
-            <span className="text-sm">🦾</span>
+        <div className="bg-[#FF5E7E] border-2 border-black shadow-[3px_3px_0px_#000] sm:shadow-[4px_4px_0px_#000] p-3 sm:p-4 rounded-xl text-black flex flex-col justify-between hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] transition-all">
+          <div className="flex items-center justify-between text-xs font-mono font-bold mb-1.5">
+            <span className="tracking-wider uppercase text-[9px] sm:text-[10px]">Hardware Focus</span>
+            <span className="text-xs sm:text-sm">🦾</span>
           </div>
-          <div className="text-3xl sm:text-4xl font-black font-mono tracking-tight">Physical AI</div>
-          <div className="text-xs font-mono font-bold mt-2 text-black/90">Robotics · Silicon · Cleanrooms</div>
+          <div className="text-2xl sm:text-4xl font-black font-mono tracking-tight truncate">Physical AI</div>
+          <div className="text-[10px] sm:text-xs font-mono font-bold mt-1 text-black/90 truncate">Robotics · Cleanroom</div>
         </div>
       </div>
 
       {/* ── Search & Filter Controls (Neo-Brutal Card) ── */}
-      <div className="bg-white border-[2.5px] border-black rounded-2xl p-6 shadow-[5px_5px_0px_#000] mb-8 space-y-5">
+      <div className="bg-white border-[2.5px] border-black rounded-2xl p-4 sm:p-6 shadow-[5px_5px_0px_#000] mb-8 space-y-4 sm:space-y-5">
         {/* Search Row */}
-        <div className="flex flex-col sm:flex-row gap-3 items-stretch">
+        <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 items-stretch">
           <div className="relative flex-1">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-black text-base">🔍</span>
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-black text-sm sm:text-base">🔍</span>
             <input
               type="text"
-              placeholder="Search programs, cities, or hardware (e.g. SMT, CNC, Cleanroom, H100, SAFE)..."
+              placeholder="Search programs, cities, or hardware (SMT, CNC, Cleanroom, SAFE)..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-white border-[2.5px] border-black shadow-[3px_3px_0px_#000] text-black placeholder:text-slate-500 font-mono rounded-xl pl-11 pr-20 py-3 text-sm focus:outline-none focus:bg-yellow-50 focus:shadow-[4px_4px_0px_#000] transition-all"
+              className="w-full bg-white border-[2.5px] border-black shadow-[3px_3px_0px_#000] text-black placeholder:text-slate-500 font-mono rounded-xl pl-10 sm:pl-11 pr-16 sm:pr-20 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:bg-yellow-50 focus:shadow-[4px_4px_0px_#000] transition-all"
             />
             {search && (
               <button
                 onClick={() => setSearch('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono font-bold bg-slate-200 hover:bg-slate-300 text-black px-2.5 py-1 rounded-md border border-black shadow-[1px_1px_0px_#000]"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] sm:text-xs font-mono font-bold bg-slate-200 hover:bg-slate-300 text-black px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md border border-black shadow-[1px_1px_0px_#000]"
               >
-                CLEAR ✕
+                ✕
               </button>
             )}
           </div>
@@ -234,16 +234,16 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
               const el = document.getElementById('programs-section');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="px-6 py-3 bg-[#FF5E7E] hover:bg-[#FB7185] border-[2.5px] border-black shadow-[3px_3px_0px_#000] text-black font-bold uppercase rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all font-mono text-sm whitespace-nowrap flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-5 py-2.5 sm:py-3 bg-[#FF5E7E] hover:bg-[#FB7185] border-[2.5px] border-black shadow-[3px_3px_0px_#000] text-black font-bold uppercase rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all font-mono text-xs sm:text-sm whitespace-nowrap flex items-center justify-center gap-2"
           >
             <span>FIND PROGRAMS →</span>
           </button>
 
           {/* View Toggle */}
-          <div className="flex items-center bg-[#F4EFE6] border-2 border-black rounded-xl p-1 shadow-[2px_2px_0px_#000]">
+          <div className="w-full sm:w-auto flex items-center justify-center bg-[#F4EFE6] border-2 border-black rounded-xl p-1 shadow-[2px_2px_0px_#000]">
             <button
               onClick={() => setViewMode('cards')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold font-mono transition-all ${
+              className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-bold font-mono transition-all text-center ${
                 viewMode === 'cards'
                   ? 'bg-black text-white shadow-[1px_1px_0px_#000]'
                   : 'text-black hover:bg-yellow-200'
@@ -253,7 +253,7 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
             </button>
             <button
               onClick={() => setViewMode('terminal')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold font-mono transition-all ${
+              className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-bold font-mono transition-all text-center ${
                 viewMode === 'terminal'
                   ? 'bg-black text-white shadow-[1px_1px_0px_#000]'
                   : 'text-black hover:bg-yellow-200'
@@ -269,14 +269,14 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
           <div className="text-xs font-mono font-bold text-slate-800 uppercase tracking-wider mb-2 flex items-center gap-1.5">
             <span>⚡ PIPELINE FILTER TABS:</span>
           </div>
-          <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none sm:flex-wrap">
             {(['All', 'US/Canada', 'Europe', 'Rolling', 'Urgent'] as const).map((tab) => {
               const active = activeTab === tab;
               return (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-mono transition-all ${
+                  className={`whitespace-nowrap px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-mono transition-all ${
                     active
                       ? 'bg-black text-white border-2 border-black shadow-[3px_3px_0px_#000] font-bold'
                       : 'bg-white text-black border-2 border-black hover:bg-yellow-200 shadow-[2px_2px_0px_#000] font-medium'
@@ -286,7 +286,7 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
                   {tab === 'US/Canada' && `🇺🇸 US / Canada (${naCount})`}
                   {tab === 'Europe' && `🇪🇺 Europe (${euCount})`}
                   {tab === 'Rolling' && `🔄 Rolling (${rollingCount})`}
-                  {tab === 'Urgent' && `⚡ Urgent / Closing Soon (${urgentCount})`}
+                  {tab === 'Urgent' && `⚡ Urgent (${urgentCount})`}
                 </button>
               );
             })}
@@ -317,15 +317,15 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
         </div>
 
         {/* Sub-Filters: Format, Instrument & Result Counter */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t-2 border-black/10 text-xs font-mono">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t-2 border-black/10 text-xs font-mono">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-4">
             <div className="flex items-center gap-1.5">
-              <span className="font-bold text-slate-800">Format:</span>
+              <span className="font-bold text-slate-800 text-[11px] sm:text-xs">Format:</span>
               {(['All', 'In-Person', 'Remote'] as const).map((fmt) => (
                 <button
                   key={fmt}
                   onClick={() => setSelectedFormat(fmt)}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all ${
+                  className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[11px] sm:text-xs font-mono transition-all ${
                     selectedFormat === fmt
                       ? 'bg-[#2563EB] text-white border-2 border-black shadow-[2px_2px_0px_#000] font-bold'
                       : 'bg-white text-black border border-black hover:bg-slate-100 shadow-[1px_1px_0px_#000]'
@@ -337,12 +337,12 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
             </div>
 
             <div className="flex items-center gap-1.5">
-              <span className="font-bold text-slate-800">Instrument:</span>
+              <span className="font-bold text-slate-800 text-[11px] sm:text-xs">Terms:</span>
               {(['All', 'SAFE', 'Equity', 'Grant'] as const).map((term) => (
                 <button
                   key={term}
                   onClick={() => setSelectedTerm(term)}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all ${
+                  className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[11px] sm:text-xs font-mono transition-all ${
                     selectedTerm === term
                       ? 'bg-[#34D399] text-black border-2 border-black shadow-[2px_2px_0px_#000] font-bold'
                       : 'bg-white text-black border border-black hover:bg-slate-100 shadow-[1px_1px_0px_#000]'
@@ -354,8 +354,8 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
             </div>
           </div>
 
-          <div className="font-bold text-black bg-yellow-200 border border-black px-3 py-1 rounded-lg shadow-[1px_1px_0px_#000]">
-            Showing <strong>{filtered.length}</strong> of {initialPrograms.length} verified programs
+          <div className="font-bold text-black bg-yellow-200 border border-black px-2.5 py-1 rounded-lg shadow-[1px_1px_0px_#000] text-[11px] sm:text-xs text-center sm:text-left self-start sm:self-auto">
+            Showing <strong>{filtered.length}</strong> of {initialPrograms.length} verified cohorts
           </div>
         </div>
       </div>
@@ -386,17 +386,17 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
       {/* ── View 1: Program Bento Cards ── */}
       <div id="programs-section">
         {viewMode === 'cards' && filtered.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {filtered.map((p) => {
               const isUrgent = p.daysLeft <= 7 && !p.isRolling && p.daysLeft >= 0;
               return (
                 <div
                   key={p.id}
-                  className="bg-white border-[2.5px] border-black rounded-2xl p-6 shadow-[5px_5px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[7px_7px_0px_#000] transition-all flex flex-col justify-between group"
+                  className="bg-white border-[2.5px] border-black rounded-2xl p-4 sm:p-6 shadow-[4px_4px_0px_#000] sm:shadow-[5px_5px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#000] transition-all flex flex-col justify-between group"
                 >
                   <div>
                     {/* Top Bar: Ticker Pill, Badge & Urgency Status */}
-                    <div className="flex items-center justify-between gap-2 mb-4">
+                    <div className="flex items-center justify-between gap-2 mb-3.5">
                       <div className="flex items-center gap-2">
                         <span className="bg-[#FFE600] text-black border-2 border-black shadow-[2px_2px_0px_#000] px-2.5 py-0.5 rounded-lg font-mono font-bold text-xs">
                           ${p.ticker}
@@ -430,10 +430,10 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
 
                     {/* Program Title & Host */}
                     <div className="mb-3">
-                      <h3 className="text-2xl font-black text-black group-hover:text-[#2563EB] transition-colors leading-tight">
+                      <h3 className="text-xl sm:text-2xl font-black text-black group-hover:text-[#2563EB] transition-colors leading-tight break-words">
                         <a href={`/programs/${p.id}`}>{p.name}</a>
                       </h3>
-                      <div className="text-xs font-mono font-bold text-slate-600 mt-1 uppercase tracking-wider">
+                      <div className="text-[11px] sm:text-xs font-mono font-bold text-slate-600 mt-1 uppercase tracking-wider">
                         by {p.organizer}
                       </div>
                     </div>
@@ -529,7 +529,7 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
                     <div className="space-y-2">
                       <a
                         href={`/programs/${p.id}`}
-                        className="w-full py-2.5 px-4 bg-[#FFE600] hover:bg-[#FACC15] text-black font-mono font-bold text-xs text-center rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all flex items-center justify-center gap-1.5 uppercase"
+                        className="w-full py-3 px-4 bg-[#FFE600] hover:bg-[#FACC15] text-black font-mono font-bold text-xs text-center rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all flex items-center justify-center gap-1.5 uppercase"
                       >
                         <span>View Terms & Hardware →</span>
                       </a>
@@ -557,6 +557,10 @@ export default function RadarDashboard({ initialPrograms }: { initialPrograms: P
       {/* ── View 2: Terminal Table View ── */}
       {viewMode === 'terminal' && filtered.length > 0 && (
         <div className="bg-white border-[2.5px] border-black rounded-2xl overflow-hidden shadow-[5px_5px_0px_#000] font-mono text-xs text-black">
+          <div className="sm:hidden px-3.5 py-2 bg-[#FFE600] text-black text-[10px] font-black uppercase tracking-wider border-b-2 border-black flex items-center justify-between">
+            <span>← Swipe horizontally to view full metrics →</span>
+            <span>📊</span>
+          </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>

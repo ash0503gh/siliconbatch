@@ -46,7 +46,7 @@ const {
                 v2.4
               </span>
             </div>
-            <div class="text-[10px] font-mono text-slate-700 font-semibold">
+            <div class="text-[10px] font-mono text-slate-700 font-semibold hidden sm:block">
               Physical AI · Robotics · Hardware Foundry
             </div>
           </div>
@@ -64,42 +64,43 @@ const {
         </div>
 
         <!-- Navigation Links -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 sm:gap-3">
           <a
             href="https://github.com/ash0503gh/siliconbatch"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-xs font-mono font-bold text-black bg-white hover:bg-yellow-50 px-3.5 py-1.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-1.5"
+            class="text-xs font-mono font-bold text-black bg-white hover:bg-yellow-50 px-2.5 sm:px-3.5 py-1.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-1"
           >
             <span>GitHub</span>
-            <span class="text-[11px] font-bold">↗</span>
+            <span class="text-[10px] font-bold">↗</span>
           </a>
           <a
             href="https://github.com/ash0503gh/siliconbatch/issues/new"
             target="_blank"
             rel="noopener noreferrer"
-            class="hidden sm:inline-flex text-xs font-mono font-black text-black bg-[#FFE600] hover:bg-[#FACC15] px-4 py-1.5 rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all"
+            class="text-xs font-mono font-black text-black bg-[#FFE600] hover:bg-[#FACC15] px-2.5 sm:px-4 py-1.5 rounded-xl border-2 border-black shadow-[2.5px_2.5px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1.5px_1.5px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
           >
-            + Submit Program
+            <span class="hidden sm:inline">+ Submit Program</span>
+            <span class="sm:hidden">+ Submit</span>
           </a>
         </div>
       </div>
     </header>
 
     <!-- Main Content Slot -->
-    <main class="flex-1 relative z-10">
+    <main class="flex-1 relative z-10 w-full">
       <slot />
     </main>
 
     <!-- Footer -->
-    <footer class="border-t-[2.5px] border-black bg-[#F4EFE6] mt-24 py-12 font-mono text-xs text-slate-800 relative z-10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-2">
+    <footer class="border-t-[2.5px] border-black bg-[#F4EFE6] mt-16 sm:mt-24 py-10 sm:py-12 font-mono text-xs text-slate-800 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        <div class="flex flex-col sm:flex-row items-center gap-2">
           <span class="font-black text-black text-sm">⚡ SiliconBatch</span>
-          <span class="text-slate-400">·</span>
+          <span class="text-slate-400 hidden sm:inline">·</span>
           <span class="text-slate-700 font-medium">The High-Density Radar for Physical AI & Hardware Accelerators.</span>
         </div>
-        <div class="flex items-center gap-4 text-[11px] font-bold">
+        <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-[11px] font-bold">
           <span class="px-2.5 py-1 rounded-md bg-white text-black border-2 border-black shadow-[1.5px_1.5px_0px_#000]">Verified Deadlines</span>
           <span class="px-2.5 py-1 rounded-md bg-white text-black border-2 border-black shadow-[1.5px_1.5px_0px_#000]">100% Founder IP</span>
           <a

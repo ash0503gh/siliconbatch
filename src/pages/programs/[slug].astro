@@ -68,38 +68,38 @@ const isClosed = daysLeft < 0 && !data.isRolling;
       )}
 
       <!-- Hero Card (Neo-Brutal Pop White Card) -->
-      <div class="bg-white border-[2.5px] border-black shadow-[6px_6px_0px_#000] p-6 sm:p-10 mb-8 rounded-2xl relative overflow-hidden">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative z-10">
+      <div class="bg-white border-[2.5px] border-black shadow-[5px_5px_0px_#000] sm:shadow-[6px_6px_0px_#000] p-5 sm:p-10 mb-8 rounded-2xl relative overflow-hidden">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 sm:gap-8 relative z-10">
           <!-- Program Identity -->
           <div class="flex-1">
-            <div class="flex flex-wrap items-center gap-2.5 mb-4">
-              <span class="bg-[#FFE600] text-black border-2 border-black shadow-[2px_2px_0px_#000] font-mono font-black text-xs px-3 py-1 rounded-lg">
+            <div class="flex flex-wrap items-center gap-2 mb-3.5 sm:mb-4">
+              <span class="bg-[#FFE600] text-black border-2 border-black shadow-[2px_2px_0px_#000] font-mono font-black text-xs px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg">
                 ${data.ticker}
               </span>
-              <span class="bg-slate-100 text-black border border-black shadow-[1px_1px_0px_#000] font-mono font-bold text-xs px-3 py-1 rounded-lg">
+              <span class="bg-slate-100 text-black border border-black shadow-[1px_1px_0px_#000] font-mono font-bold text-xs px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg">
                 📍 {data.location.city}, {data.location.country}
               </span>
               {data.badge && (
-                <span class="bg-[#FF5E7E] text-black border-2 border-black shadow-[2px_2px_0px_#000] font-mono font-bold text-xs px-2.5 py-1 rounded-lg">
+                <span class="bg-[#FF5E7E] text-black border-2 border-black shadow-[2px_2px_0px_#000] font-mono font-bold text-xs px-2.5 py-0.5 sm:py-1 rounded-lg">
                   {data.badge}
                 </span>
               )}
             </div>
 
-            <h1 class="text-3xl sm:text-5xl font-black text-black tracking-tight leading-tight">
+            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black text-black tracking-tight leading-tight break-words">
               {data.name}
             </h1>
-            <div class="text-sm font-bold uppercase tracking-wider text-slate-700 font-mono mt-2">
+            <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 font-mono mt-1.5 sm:mt-2">
               Organized by <span class="text-black underline decoration-2 decoration-[#FFE600]">{data.organizer}</span>
             </div>
-            <p class="text-base sm:text-lg text-slate-800 mt-4 max-w-2xl font-medium leading-relaxed">
+            <p class="text-sm sm:text-base lg:text-lg text-slate-800 mt-3 sm:mt-4 max-w-2xl font-medium leading-relaxed">
               {data.tagline}
             </p>
 
             <!-- Sector tags -->
-            <div class="flex flex-wrap gap-2 mt-5">
+            <div class="flex flex-wrap gap-1.5 sm:gap-2 mt-4 sm:mt-5">
               {data.sectors.map((sector) => (
-                <span class="text-xs font-mono font-bold px-3 py-1 rounded-lg bg-yellow-100 text-black border border-black shadow-[1px_1px_0px_#000]">
+                <span class="text-[11px] sm:text-xs font-mono font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg bg-yellow-100 text-black border border-black shadow-[1px_1px_0px_#000]">
                   {sector}
                 </span>
               ))}
@@ -107,9 +107,9 @@ const isClosed = daysLeft < 0 && !data.isRolling;
           </div>
 
           <!-- Closing Countdown & CTA Block -->
-          <div class="w-full lg:w-84 flex flex-col gap-4">
+          <div class="w-full lg:w-84 flex flex-col gap-3 sm:gap-4">
             <!-- Countdown Container -->
-            <div class="bg-[#F7F2E8] border-2 border-black shadow-[3px_3px_0px_#000] p-4 rounded-xl">
+            <div class="bg-[#F7F2E8] border-2 border-black shadow-[3px_3px_0px_#000] p-3 sm:p-4 rounded-xl">
               <DeadlineCountdown
                 client:load
                 closingDate={data.closingDate}
@@ -121,7 +121,7 @@ const isClosed = daysLeft < 0 && !data.isRolling;
 
             <!-- Action Buttons -->
             {isClosed ? (
-              <div class="w-full py-4 px-5 bg-black border-2 border-black shadow-[4px_4px_0px_#000] text-white font-mono font-black text-center rounded-xl flex items-center justify-center gap-2 uppercase text-sm">
+              <div class="w-full py-3.5 sm:py-4 px-4 sm:px-5 bg-black border-2 border-black shadow-[3px_3px_0px_#000] sm:shadow-[4px_4px_0px_#000] text-white font-mono font-black text-center rounded-xl flex items-center justify-center gap-2 uppercase text-xs sm:text-sm">
                 <span class="w-2.5 h-2.5 rounded-full bg-[#FF5E7E]"></span>
                 <span>Applications Closed</span>
               </div>
@@ -130,7 +130,7 @@ const isClosed = daysLeft < 0 && !data.isRolling;
                 href={data.applyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full py-4 px-5 bg-[#FFE600] hover:bg-[#FACC15] border-[2.5px] border-black shadow-[4px_4px_0px_#000] font-black text-black uppercase text-center rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all flex items-center justify-center gap-2 group text-base"
+                class="w-full py-3.5 sm:py-4 px-4 sm:px-5 bg-[#FFE600] hover:bg-[#FACC15] border-[2.5px] border-black shadow-[3px_3px_0px_#000] sm:shadow-[4px_4px_0px_#000] font-black text-black uppercase text-center rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all flex items-center justify-center gap-2 group text-sm sm:text-base"
               >
                 <span>APPLY FOR BATCH ↗</span>
               </a>
@@ -140,7 +140,7 @@ const isClosed = daysLeft < 0 && !data.isRolling;
               href={data.website}
               target="_blank"
               rel="noopener noreferrer"
-              class="w-full py-3 px-4 bg-white hover:bg-slate-100 border-2 border-black shadow-[3px_3px_0px_#000] text-black font-mono text-xs font-bold text-center rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center justify-center gap-2"
+              class="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-white hover:bg-slate-100 border-2 border-black shadow-[2px_2px_0px_#000] sm:shadow-[3px_3px_0px_#000] text-black font-mono text-xs font-bold text-center rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center justify-center gap-1.5"
             >
               <span>{isClosed ? 'Visit Founders Website / Waitlist ↗' : 'Visit Official Website ↗'}</span>
             </a>
@@ -149,49 +149,49 @@ const isClosed = daysLeft < 0 && !data.isRolling;
       </div>
 
       <!-- Stats Bento Grid (Check Size, Equity %, Valuation Cap, Duration, Residency, IP) -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 mb-10">
-        <div class="bg-[#FFE600] border-2 border-black shadow-[3px_3px_0px_#000] p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
-          <div class="text-[10px] uppercase font-black text-black/70 tracking-wider">Check Size</div>
-          <div class="text-xl font-black text-black mt-1">{data.terms.checkDisplay}</div>
-          <div class="text-[10px] font-bold text-black/70 mt-0.5 truncate">{data.terms.instrument}</div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3.5 mb-8 sm:mb-10">
+        <div class="bg-[#FFE600] border-2 border-black shadow-[3px_3px_0px_#000] p-3 sm:p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
+          <div class="text-[9px] sm:text-[10px] uppercase font-black text-black/70 tracking-wider">Check Size</div>
+          <div class="text-lg sm:text-xl font-black text-black mt-1">{data.terms.checkDisplay}</div>
+          <div class="text-[9px] sm:text-[10px] font-bold text-black/70 mt-0.5 truncate">{data.terms.instrument}</div>
         </div>
 
-        <div class="bg-white border-2 border-black shadow-[3px_3px_0px_#000] p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
-          <div class="text-[10px] uppercase font-black text-black/70 tracking-wider">Equity Taken</div>
-          <div class="text-xl font-black text-black mt-1">
+        <div class="bg-white border-2 border-black shadow-[3px_3px_0px_#000] p-3 sm:p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
+          <div class="text-[9px] sm:text-[10px] uppercase font-black text-black/70 tracking-wider">Equity Taken</div>
+          <div class="text-lg sm:text-xl font-black text-black mt-1">
             {data.terms.equityPercent !== null ? `${data.terms.equityPercent}%` : '0%'}
           </div>
-          <div class="text-[10px] font-bold text-black/70 mt-0.5">
+          <div class="text-[9px] sm:text-[10px] font-bold text-black/70 mt-0.5 truncate">
             {data.terms.equityPercent === 0 ? 'Non-Dilutive' : 'Standard Dilution'}
           </div>
         </div>
 
-        <div class="bg-[#93C5FD] border-2 border-black shadow-[3px_3px_0px_#000] p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
-          <div class="text-[10px] uppercase font-black text-black/70 tracking-wider">Valuation Cap</div>
-          <div class="text-xs font-black text-black mt-2 truncate">
+        <div class="bg-[#93C5FD] border-2 border-black shadow-[3px_3px_0px_#000] p-3 sm:p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
+          <div class="text-[9px] sm:text-[10px] uppercase font-black text-black/70 tracking-wider">Valuation Cap</div>
+          <div class="text-[11px] sm:text-xs font-black text-black mt-1 sm:mt-2 truncate">
             {data.terms.valuationCapDisplay}
           </div>
-          <div class="text-[10px] font-bold text-black/70 mt-0.5">Post-Money Cap</div>
+          <div class="text-[9px] sm:text-[10px] font-bold text-black/70 mt-0.5 truncate">Post-Money Cap</div>
         </div>
 
-        <div class="bg-[#FDE047] border-2 border-black shadow-[3px_3px_0px_#000] p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
-          <div class="text-[10px] uppercase font-black text-black/70 tracking-wider">Duration</div>
-          <div class="text-xl font-black text-black mt-1">{data.durationWeeks} Wks</div>
-          <div class="text-[10px] font-bold text-black/70 mt-0.5 truncate">{data.cohortStart}</div>
+        <div class="bg-[#FDE047] border-2 border-black shadow-[3px_3px_0px_#000] p-3 sm:p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
+          <div class="text-[9px] sm:text-[10px] uppercase font-black text-black/70 tracking-wider">Duration</div>
+          <div class="text-lg sm:text-xl font-black text-black mt-1">{data.durationWeeks} Wks</div>
+          <div class="text-[9px] sm:text-[10px] font-bold text-black/70 mt-0.5 truncate">{data.cohortStart}</div>
         </div>
 
-        <div class="bg-[#C4B5FD] border-2 border-black shadow-[3px_3px_0px_#000] p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
-          <div class="text-[10px] uppercase font-black text-black/70 tracking-wider">Residency</div>
-          <div class="text-sm font-black text-black mt-1.5">
+        <div class="bg-[#C4B5FD] border-2 border-black shadow-[3px_3px_0px_#000] p-3 sm:p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
+          <div class="text-[9px] sm:text-[10px] uppercase font-black text-black/70 tracking-wider">Residency</div>
+          <div class="text-xs sm:text-sm font-black text-black mt-1 sm:mt-1.5 truncate">
             {data.location.inPerson ? 'In-Person' : 'Hybrid'}
           </div>
-          <div class="text-[10px] font-bold text-black/70 mt-0.5 truncate">{data.location.city}</div>
+          <div class="text-[9px] sm:text-[10px] font-bold text-black/70 mt-0.5 truncate">{data.location.city}</div>
         </div>
 
-        <div class="bg-[#34D399] border-2 border-black shadow-[3px_3px_0px_#000] p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
-          <div class="text-[10px] uppercase font-black text-black/70 tracking-wider">Founder IP</div>
-          <div class="text-xs font-black text-black mt-2">100% Retained</div>
-          <div class="text-[10px] font-bold text-black/70 mt-0.5">Founder Owned</div>
+        <div class="bg-[#34D399] border-2 border-black shadow-[3px_3px_0px_#000] p-3 sm:p-4 text-center font-mono rounded-xl hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#000] transition-all">
+          <div class="text-[9px] sm:text-[10px] uppercase font-black text-black/70 tracking-wider">Founder IP</div>
+          <div class="text-[11px] sm:text-xs font-black text-black mt-1 sm:mt-2 truncate">100% Retained</div>
+          <div class="text-[9px] sm:text-[10px] font-bold text-black/70 mt-0.5 truncate">Founder Owned</div>
         </div>
       </div>
 
