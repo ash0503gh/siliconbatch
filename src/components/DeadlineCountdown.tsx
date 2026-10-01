@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 interface CountdownProps {
   closingDate: string;
   isRolling?: boolean;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'inline' | 'sm' | 'md' | 'lg';
   showDetails?: boolean;
 }
 
@@ -49,84 +49,133 @@ export default function DeadlineCountdown({
 
   if (isRolling) {
     return (
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#22c55e]/10 border border-[#22c55e]/30 text-[#22c55e] font-mono text-xs font-semibold">
-        <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse"></span>
-        <span>Rolling Applications Active</span>
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 font-mono text-[11px] font-semibold tracking-wide">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Rolling Applications Open</span>
       </div>
     );
   }
 
   if (timeLeft.isExpired) {
     return (
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#ef4444]/10 border border-[#ef4444]/30 text-[#ef4444] font-mono text-xs font-semibold">
-        <span className="w-2 h-2 rounded-full bg-[#ef4444]"></span>
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/25 text-rose-400 font-mono text-[11px] font-semibold">
+        <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
         <span>Applications Closed</span>
       </div>
     );
   }
 
   const isUrgent = timeLeft.days <= 7;
-  const colorStyles = isUrgent
-    ? {
-        bg: 'bg-[#ef4444]/10',
-        border: 'border-[#ef4444]/30',
-        text: 'text-[#ef4444]',
-        label: 'text-[#ef4444]/80',
-        badge: 'bg-[#ef4444]/20 text-[#ef4444]',
-      }
-    : {
-        bg: 'bg-[#06b6d4]/10',
-        border: 'border-[#06b6d4]/30',
-        text: 'text-[#06b6d4]',
-        label: 'text-[#06b6d4]/80',
-        badge: 'bg-[#06b6d4]/20 text-[#06b6d4]',
-      };
 
-  if (size === 'sm') {
+  // Option 1: Frontier Foundry Inline Pill for Bento Cards
+  if (size === 'inline' || size === 'sm' || size === 'md') {
     return (
-      <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md font-mono text-xs font-bold ${colorStyles.bg} ${colorStyles.border} border ${colorStyles.text}`}>
-        <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
-        <span>
-          {timeLeft.days}d {String(timeLeft.hours).padStart(2, '0')}h {String(timeLeft.minutes).padStart(2, '0')}m left
-        </span>
+      <div
+        className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl border font-mono text-xs transition-all ${
+          isUrgent
+            ? 'bg-rose-500/10 border-rose-500/30 text-rose-300 hover:bg-rose-500/15'
+            : 'bg-indigo-500/10 border-indigo-500/25 text-indigo-200 hover:bg-indigo-500/15'
+        }`}
+      >
+        <div className="flex items-center gap-2">
+          <span className="relative flex h-2 w-2">
+            <span
+              className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
+                isUrgent ? 'bg-rose-400' : 'bg-indigo-400'
+              }`}
+            ></span>
+            <span
+              className={`relative inline-flex rounded-full h-2 w-2 ${
+                isUrgent ? 'bg-rose-500' : 'bg-indigo-500'
+              }`}
+            ></span>
+          </span>
+          <span className="text-[11px] font-semibold tracking-wider uppercase text-slate-400">
+            {isUrgent ? 'Closing Soon' : 'Application Window'}
+          </span>
+        </div>
+
+        <div className="flex items-center gap-1 font-bold tabular-nums">
+          <span className={isUrgent ? 'text-rose-400' : 'text-white'}>
+            {timeLeft.days}d
+          </span>
+          <span className="text-slate-500">:</span>
+          <span className={isUrgent ? 'text-rose-400' : 'text-slate-300'}>
+            {String(timeLeft.hours).padStart(2, '0')}h
+          </span>
+          <span className="text-slate-500">:</span>
+          <span className={isUrgent ? 'text-rose-400' : 'text-slate-300'}>
+            {String(timeLeft.minutes).padStart(2, '0')}m
+          </span>
+        </div>
       </div>
     );
   }
 
+  // Full Hero Glass Countdown (for Experience Page)
   return (
-    <div className={`flex flex-col gap-1 p-3 rounded-lg border font-mono ${colorStyles.bg} ${colorStyles.border}`}>
-      <div className="flex items-center justify-between text-[11px] font-bold tracking-wider uppercase mb-1">
-        <span className="flex items-center gap-1.5 text-[#b4c0d4]">
-          <span className={`w-2 h-2 rounded-full ${isUrgent ? 'bg-[#ef4444]' : 'bg-[#06b6d4]'} animate-pulse`}></span>
-          Application Deadline
+    <div
+      className={`flex flex-col gap-2 p-4 rounded-2xl border font-mono backdrop-blur-xl ${
+        isUrgent
+          ? 'bg-rose-950/20 border-rose-500/30 text-rose-300 shadow-glow-rose'
+          : 'bg-indigo-950/20 border-indigo-500/30 text-indigo-200 shadow-glow'
+      }`}
+    >
+      <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider mb-1">
+        <span className="flex items-center gap-2 text-slate-300">
+          <span
+            className={`w-2 h-2 rounded-full ${
+              isUrgent ? 'bg-rose-400 animate-ping' : 'bg-emerald-400 animate-pulse'
+            }`}
+          ></span>
+          <span>Application Countdown</span>
         </span>
-        <span className={`text-[10px] px-1.5 py-0.5 rounded ${colorStyles.badge}`}>
-          {isUrgent ? '⚡ CLOSING SOON' : '🟢 OPEN'}
+        <span
+          className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${
+            isUrgent ? 'bg-rose-500/25 text-rose-300 border border-rose-500/40' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+          }`}
+        >
+          {isUrgent ? '⚡ Urgent Closing' : '🟢 Accepting Cohort'}
         </span>
       </div>
 
-      <div className="grid grid-cols-4 gap-2 text-center">
-        <div className="bg-[#0c1018]/80 rounded p-1.5 border border-[#1b2540]">
-          <div className={`text-xl font-black ${colorStyles.text}`}>{timeLeft.days}</div>
-          <div className="text-[9px] uppercase tracking-wider text-[#556580]">Days</div>
+      <div className="grid grid-cols-4 gap-2 text-center my-1">
+        <div className="bg-slate-900/80 rounded-xl p-2.5 border border-white/10">
+          <div className="text-2xl font-black tracking-tight text-white tabular-nums">
+            {timeLeft.days}
+          </div>
+          <div className="text-[10px] uppercase tracking-widest text-slate-400 mt-0.5">Days</div>
         </div>
-        <div className="bg-[#0c1018]/80 rounded p-1.5 border border-[#1b2540]">
-          <div className={`text-xl font-black ${colorStyles.text}`}>{String(timeLeft.hours).padStart(2, '0')}</div>
-          <div className="text-[9px] uppercase tracking-wider text-[#556580]">Hours</div>
+        <div className="bg-slate-900/80 rounded-xl p-2.5 border border-white/10">
+          <div className="text-2xl font-black tracking-tight text-white tabular-nums">
+            {String(timeLeft.hours).padStart(2, '0')}
+          </div>
+          <div className="text-[10px] uppercase tracking-widest text-slate-400 mt-0.5">Hours</div>
         </div>
-        <div className="bg-[#0c1018]/80 rounded p-1.5 border border-[#1b2540]">
-          <div className={`text-xl font-black ${colorStyles.text}`}>{String(timeLeft.minutes).padStart(2, '0')}</div>
-          <div className="text-[9px] uppercase tracking-wider text-[#556580]">Mins</div>
+        <div className="bg-slate-900/80 rounded-xl p-2.5 border border-white/10">
+          <div className="text-2xl font-black tracking-tight text-white tabular-nums">
+            {String(timeLeft.minutes).padStart(2, '0')}
+          </div>
+          <div className="text-[10px] uppercase tracking-widest text-slate-400 mt-0.5">Mins</div>
         </div>
-        <div className="bg-[#0c1018]/80 rounded p-1.5 border border-[#1b2540]">
-          <div className={`text-xl font-black ${colorStyles.text}`}>{String(timeLeft.seconds).padStart(2, '0')}</div>
-          <div className="text-[9px] uppercase tracking-wider text-[#556580]">Secs</div>
+        <div className="bg-slate-900/80 rounded-xl p-2.5 border border-white/10">
+          <div className="text-2xl font-black tracking-tight text-white tabular-nums">
+            {String(timeLeft.seconds).padStart(2, '0')}
+          </div>
+          <div className="text-[10px] uppercase tracking-widest text-slate-400 mt-0.5">Secs</div>
         </div>
       </div>
-      
+
       {showDetails && (
-        <div className="mt-1 text-[11px] text-[#556580] text-center">
-          Closes {new Date(closingDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+        <div className="text-[11px] text-slate-400 text-center mt-1">
+          Final deadline:{' '}
+          <strong className="text-white font-semibold">
+            {new Date(closingDate).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+            })}
+          </strong>
         </div>
       )}
     </div>

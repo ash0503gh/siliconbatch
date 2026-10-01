@@ -24,40 +24,45 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body class="bg-[#06090f] text-[#e6ecf4] min-h-screen flex flex-col font-sans selection:bg-[#3b82f6]/30 selection:text-white">
-    <!-- Top Navigation -->
-    <header class="border-b border-[#1b2540] bg-[#0c1018]/90 backdrop-blur-md sticky top-0 z-40">
+  <body class="bg-[#05070B] text-slate-100 min-h-screen flex flex-col font-sans selection:bg-indigo-500/30 selection:text-white relative">
+    <!-- Top Navigation (Frontier Foundry Glass) -->
+    <header class="border-b border-white/5 bg-[#05070B]/80 backdrop-blur-xl sticky top-0 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <!-- Logo -->
         <a href="/" class="flex items-center gap-3 group">
-          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] flex items-center justify-center shadow-lg shadow-[#3b82f6]/20 font-mono font-black text-white text-lg">
-            ⚡
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-sky-400 p-[1px] shadow-glow">
+            <div class="w-full h-full bg-[#090D16] rounded-[11px] flex items-center justify-center font-mono font-black text-white text-base">
+              ⚡
+            </div>
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <span class="text-lg font-black tracking-tight text-[#e6ecf4] group-hover:text-[#3b82f6] transition-colors">
+              <span class="text-lg font-bold tracking-tight text-white group-hover:text-indigo-400 transition-colors">
                 SiliconBatch
               </span>
-              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#3b82f6]/20 text-[#3b82f6] border border-[#3b82f6]/40 font-bold">
-                v1.0
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 font-semibold">
+                RADAR
               </span>
             </div>
-            <div class="text-[10px] font-mono text-[#556580]">
-              Physical AI · Robotics · Hardware Radar
+            <div class="text-[10px] font-mono text-slate-400">
+              Physical AI · Robotics · Hardware Foundry
             </div>
           </div>
         </a>
 
-        <!-- Middle Live Status -->
-        <div class="hidden md:flex items-center gap-2 text-xs font-mono bg-[#131a28] px-3 py-1.5 rounded-full border border-[#1b2540]">
-          <span class="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse"></span>
-          <span class="text-[#b4c0d4]">RADAR ACTIVE</span>
-          <span class="text-[#556580]">|</span>
-          <span class="text-[#fbbf24]">OPEN BATCHES ONLY</span>
+        <!-- Middle Live Status Pill -->
+        <div class="hidden md:flex items-center gap-2.5 text-xs font-mono bg-white/[0.03] px-3.5 py-1.5 rounded-full border border-white/10">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span class="text-slate-300 font-medium">RADAR ACTIVE</span>
+          <span class="text-slate-600">|</span>
+          <span class="text-amber-300 font-semibold">ONLY OPEN DEADLINES</span>
         </div>
 
         <!-- Navigation Links -->
@@ -66,16 +71,16 @@ const {
             href="https://github.com/ash0503gh/siliconbatch"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-xs font-mono text-[#b4c0d4] hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1b2540] bg-[#131a28] hover:border-[#2a3a5c] transition-colors"
+            class="text-xs font-mono text-slate-300 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] transition-all"
           >
             <span>GitHub</span>
-            <span class="text-[10px] text-[#556580]">↗</span>
+            <span class="text-[10px] text-slate-500">↗</span>
           </a>
           <a
             href="https://f.inc/blueprint"
             target="_blank"
             rel="noopener noreferrer"
-            class="hidden sm:inline-flex text-xs font-mono font-bold text-white bg-[#3b82f6] hover:bg-[#2563eb] px-3.5 py-1.5 rounded-lg transition-colors shadow-sm"
+            class="hidden sm:inline-flex text-xs font-mono font-bold text-white bg-indigo-600 hover:bg-indigo-500 px-3.5 py-1.5 rounded-xl transition-all shadow-glow"
           >
             + Submit Program
           </a>
@@ -83,24 +88,24 @@ const {
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-1">
+    <!-- Main Content Slot -->
+    <main class="flex-1 relative z-10">
       <slot />
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-[#1b2540] bg-[#0c1018] mt-20 py-10 font-mono text-xs text-[#556580]">
+    <footer class="border-t border-white/5 bg-[#05070B] mt-24 py-12 font-mono text-xs text-slate-500 relative z-10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
-          <span class="font-bold text-[#b4c0d4]">SiliconBatch</span> · Aggregator for Physical AI, Robotics, and Advanced Electronics Accelerators.
+          <span class="font-bold text-slate-300">SiliconBatch</span> · The High-Density Radar for Physical AI & Hardware Accelerators.
         </div>
         <div class="flex items-center gap-4 text-[11px]">
-          <span>Only Open Deadlines Shown</span>
+          <span>Verified Closing Deadlines</span>
           <span>·</span>
-          <span>Terms & IP 100% Verified</span>
+          <span>100% Founder IP Guarantee</span>
           <span>·</span>
-          <a href="https://github.com/ash0503gh/siliconbatch" class="text-[#3b82f6] hover:underline">
-            Repo
+          <a href="https://github.com/ash0503gh/siliconbatch" class="text-indigo-400 hover:underline">
+            Open Source
           </a>
         </div>
       </div>
