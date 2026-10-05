@@ -12,6 +12,7 @@ export interface InnovationItem {
     | 'AI Foundation Models'
     | string;
   organization: string;
+  country?: string;
   releaseDate: string;
   impactMetric: string;
   status:
@@ -49,6 +50,8 @@ const STATUS_OPTIONS = [
   'Research Breakthrough',
 ];
 
+const REGION_OPTIONS = ['All', 'China 🇨🇳', 'USA 🇺🇸', 'Europe 🇪🇺'];
+
 export default function InnovationsDashboard({
   initialInnovations = [],
 }: {
@@ -57,6 +60,7 @@ export default function InnovationsDashboard({
   const [search, setSearch] = useState('');
   const [selectedDomain, setSelectedDomain] = useState<string>('All');
   const [selectedStatus, setSelectedStatus] = useState<string>('All');
+  const [selectedRegion, setSelectedRegion] = useState<string>('All');
   const [selectedTag, setSelectedTag] = useState<string>('All');
   const [viewMode, setViewMode] = useState<'cards' | 'table'>('cards');
 
@@ -110,6 +114,24 @@ export default function InnovationsDashboard({
         if (item.status !== selectedStatus) return false;
       }
 
+      // Region filter
+      if (selectedRegion !== 'All') {
+        const c = (item.country || '').toLowerCase();
+        const t = (item.tags || []).map((x) => x.toLowerCase());
+        if (selectedRegion.includes('China') && !c.includes('china') && !t.includes('china')) return false;
+        if (selectedRegion.includes('USA') && !c.includes('usa') && !t.includes('usa')) return false;
+        if (
+          selectedRegion.includes('Europe') &&
+          !c.includes('france') &&
+          !c.includes('germany') &&
+          !c.includes('europe') &&
+          !t.includes('france') &&
+          !t.includes('germany')
+        ) {
+          return false;
+        }
+      }
+
       // Tag filter
       if (selectedTag !== 'All') {
         if (!item.tags?.includes(selectedTag)) return false;
@@ -121,6 +143,7 @@ export default function InnovationsDashboard({
         const matchTitle = item.title.toLowerCase().includes(query);
         const matchTicker = item.ticker.toLowerCase().includes(query);
         const matchOrg = item.organization.toLowerCase().includes(query);
+        const matchCountry = (item.country || '').toLowerCase().includes(query);
         const matchTagline = item.tagline.toLowerCase().includes(query);
         const matchDomain = item.domain.toLowerCase().includes(query);
         const matchImpact = item.impactMetric.toLowerCase().includes(query);
@@ -133,6 +156,7 @@ export default function InnovationsDashboard({
           !matchTitle &&
           !matchTicker &&
           !matchOrg &&
+          !matchCountry &&
           !matchTagline &&
           !matchDomain &&
           !matchImpact &&
@@ -145,7 +169,7 @@ export default function InnovationsDashboard({
 
       return true;
     });
-  }, [initialInnovations, search, selectedDomain, selectedStatus, selectedTag]);
+  }, [initialInnovations, search, selectedDomain, selectedStatus, selectedRegion, selectedTag]);
 
   // Helper for status badge colors
   const getStatusBadgeStyle = (status: string) => {
@@ -365,49 +389,71 @@ export default function InnovationsDashboard({
               </div>
             </div>
 
-            {/* Quick Tag Filter if available */}
-            {allTags.length > 0 && (
-              <div className="hidden xl:flex items-center gap-1.5">
-                <span className="font-bold text-slate-700">TAG:</span>
-                <select
-                  value={selectedTag}
-                  onChange={(e) => setSelectedTag(e.target.value)}
-                  className="bg-white border border-black rounded-lg px-2 py-1 text-[11px] font-mono font-bold shadow-[1px_1px_0px_#000] focus:outline-none"
-                >
-                  <option value="All">All Tags</option>
-                  {allTags.map((tag) => (
-                    <option key={tag} value={tag}>
-                      {tag}
-                    </option>
-                  ))}
-                </select>
+                {/* Region Filter */}
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="font-bold text-slate-700 text-xs font-mono uppercase">REGION:</span>
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    {REGION_OPTIONS.map((region) => (
+                      <button
+                        key={region}
+                        type="button"
+                        onClick={() => setSelectedRegion(region)}
+                        className={`px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-mono transition-all ${
+                          selectedRegion === region
+                            ? 'bg-black text-white border-2 border-black shadow-[1.5px_1.5px_0px_#000] font-bold'
+                            : 'bg-[#F7F2E8] text-black border border-black hover:bg-yellow-200 shadow-[1px_1px_0px_#000] font-medium'
+                        }`}
+                      >
+                        {region}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Quick Tag Filter if available */}
+                {allTags.length > 0 && (
+                  <div className="hidden xl:flex items-center gap-1.5">
+                    <span className="font-bold text-slate-700">TAG:</span>
+                    <select
+                      value={selectedTag}
+                      onChange={(e) => setSelectedTag(e.target.value)}
+                      className="bg-white border border-black rounded-lg px-2 py-1 text-[11px] font-mono font-bold shadow-[1px_1px_0px_#000] focus:outline-none"
+                    >
+                      <option value="All">All Tags</option>
+                      {allTags.map((tag) => (
+                        <option key={tag} value={tag}>
+                          {tag}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
               </div>
-            )}
+
+              {/* Showing counter */}
+              <div className="font-bold text-black bg-[#FFE600] border-2 border-black px-2.5 py-1 rounded-lg shadow-[1.5px_1.5px_0px_#000] text-[11px] sm:text-xs">
+                Showing <strong>{filtered.length}</strong> of {initialInnovations.length} breakthroughs
+              </div>
+            </div>
           </div>
 
-          {/* Showing counter */}
-          <div className="font-bold text-black bg-[#FFE600] border-2 border-black px-2.5 py-1 rounded-lg shadow-[1.5px_1.5px_0px_#000] text-[11px] sm:text-xs">
-            Showing <strong>{filtered.length}</strong> of {initialInnovations.length} breakthroughs
-          </div>
-        </div>
-      </div>
-
-      {/* ── Empty State ── */}
-      {filtered.length === 0 && (
-        <div className="bg-white border-[2.5px] border-black rounded-2xl p-12 text-center my-6 shadow-[5px_5px_0px_#000]">
-          <div className="text-5xl mb-3">🔬</div>
-          <h3 className="text-xl font-black text-black mb-2">No Matching Innovations Found</h3>
-          <p className="text-sm font-medium text-slate-700 max-w-md mx-auto mb-5">
-            Try adjusting your search query, or clear active domain, status, or tag filters.
-          </p>
-          <button
-            type="button"
-            onClick={() => {
-              setSearch('');
-              setSelectedDomain('All');
-              setSelectedStatus('All');
-              setSelectedTag('All');
-            }}
+          {/* ── Empty State ── */}
+          {filtered.length === 0 && (
+            <div className="bg-white border-[2.5px] border-black rounded-2xl p-12 text-center my-6 shadow-[5px_5px_0px_#000]">
+              <div className="text-5xl mb-3">🔬</div>
+              <h3 className="text-xl font-black text-black mb-2">No Matching Innovations Found</h3>
+              <p className="text-sm font-medium text-slate-700 max-w-md mx-auto mb-5">
+                Try adjusting your search query, or clear active domain, status, region, or tag filters.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setSearch('');
+                  setSelectedDomain('All');
+                  setSelectedStatus('All');
+                  setSelectedRegion('All');
+                  setSelectedTag('All');
+                }}
             className="px-5 py-2.5 bg-[#FFE600] text-black border-2 border-black shadow-[3px_3px_0px_#000] rounded-xl text-xs font-mono font-bold hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all uppercase"
           >
             Reset All Filters ↺
@@ -443,6 +489,22 @@ export default function InnovationsDashboard({
                         >
                           {item.domain}
                         </span>
+
+                        {/* Country Flag Badge */}
+                        {item.country && (
+                          <span className="bg-white text-black border border-black shadow-[1px_1px_0px_#000] px-2 py-0.5 rounded-md text-[10px] font-mono font-bold flex items-center gap-1">
+                            <span>
+                              {item.country.includes('China')
+                                ? '🇨🇳'
+                                : item.country.includes('USA')
+                                ? '🇺🇸'
+                                : item.country.includes('France')
+                                ? '🇫🇷'
+                                : '🌐'}
+                            </span>
+                            <span>{item.country}</span>
+                          </span>
+                        )}
 
                         {item.badge && (
                           <span className="bg-[#FF5E7E] text-black border-2 border-black shadow-[1.5px_1.5px_0px_#000] px-2 py-0.5 rounded-lg text-[10px] font-mono font-bold uppercase">
@@ -625,8 +687,20 @@ export default function InnovationsDashboard({
                         >
                           {item.title}
                         </a>
-                        <div className="text-[10px] text-slate-600 font-bold uppercase">
-                          {item.organization}
+                        <div className="text-[10px] text-slate-600 font-bold uppercase flex items-center gap-1.5 mt-0.5">
+                          <span>{item.organization}</span>
+                          {item.country && (
+                            <span className="text-[9px] bg-slate-100 text-black px-1.5 py-0.2 rounded border border-black/40 font-mono">
+                              {item.country.includes('China')
+                                ? '🇨🇳 '
+                                : item.country.includes('USA')
+                                ? '🇺🇸 '
+                                : item.country.includes('France')
+                                ? '🇫🇷 '
+                                : ''}
+                              {item.country}
+                            </span>
+                          )}
                         </div>
                         <div className="text-[10px] text-slate-500 font-normal truncate max-w-xs">
                           {item.tagline}

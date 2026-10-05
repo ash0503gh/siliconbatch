@@ -61,6 +61,11 @@ const architectureValue =
           <span class="bg-[#93C5FD] text-black border-2 border-black shadow-[2px_2px_0px_#000] font-mono font-bold text-xs px-3 py-1 rounded-lg">
             {data.domain}
           </span>
+          {data.country && (
+            <span class="bg-white text-black border-2 border-black shadow-[2px_2px_0px_#000] font-mono font-bold text-xs px-3 py-1 rounded-lg">
+              {data.country.includes('China') ? '🇨🇳 ' : data.country.includes('USA') ? '🇺🇸 ' : data.country.includes('France') ? '🇫🇷 ' : '🌐 '}{data.country}
+            </span>
+          )}
           <span class="bg-[#34D399] text-black border-2 border-black shadow-[2px_2px_0px_#000] font-mono font-black text-xs px-3 py-1 rounded-lg">
             {data.status}
           </span>

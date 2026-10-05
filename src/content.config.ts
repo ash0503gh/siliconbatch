@@ -101,6 +101,7 @@ const innovations = defineCollection({
       'AI Foundation Models',
     ]),
     organization: z.string(),
+    country: z.string().optional(),
     releaseDate: z.string(),
     impactMetric: z.string(),
     status: z.enum([
