@@ -88,4 +88,39 @@ const companies = defineCollection({
   }),
 });
 
-export const collections = { programs, companies };
+const innovations = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/innovations' }),
+  schema: z.object({
+    ticker: z.string(),
+    title: z.string(),
+    tagline: z.string(),
+    domain: z.enum([
+      'Physical AI & Robotics',
+      'Hardware & Frontier Silicon',
+      'Autonomous Systems & Aerospace',
+      'AI Foundation Models',
+    ]),
+    organization: z.string(),
+    releaseDate: z.string(),
+    impactMetric: z.string(),
+    status: z.enum([
+      'Live Production',
+      'Open Weights',
+      'Commercial Pilot',
+      'Research Breakthrough',
+    ]),
+    badge: z.string().optional(),
+    specs: z.record(z.string()),
+    tags: z.array(z.string()),
+    links: z.object({
+      website: z.string().url().optional(),
+      paperUrl: z.string().url().optional(),
+      githubUrl: z.string().url().optional(),
+      demoUrl: z.string().url().optional(),
+    }),
+    image: z.string().optional(),
+    bannerImage: z.string().optional(),
+  }),
+});
+
+export const collections = { programs, companies, innovations };
